@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 class NewFieldScreen extends StatefulWidget {
   const NewFieldScreen({Key? key}) : super(key: key);
 
+  static const routeName = '/newFieldScreen';
+
   @override
   _NewFieldScreenState createState() => _NewFieldScreenState();
 }

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({Key? key}) : super(key: key);
 
+  static const routeName = '/registrationScreen';
+
   @override
   _RegistrationScreenState createState() => _RegistrationScreenState();
 }

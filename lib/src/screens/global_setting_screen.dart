@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
-class GlobalScreenScreen extends StatefulWidget {
-  const GlobalScreenScreen({Key? key}) : super(key: key);
+class GlobalSettingsScreen extends StatefulWidget {
+  const GlobalSettingsScreen({Key? key}) : super(key: key);
+
+  static const routeName = "/globalSettingsScreen";
 
   @override
-  _GlobalScreenScreenState createState() => _GlobalScreenScreenState();
+  _GlobalSettingsScreenState createState() => _GlobalSettingsScreenState();
 }
 
-class _GlobalScreenScreenState extends State<GlobalScreenScreen> {
+class _GlobalSettingsScreenState extends State<GlobalSettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Container();
