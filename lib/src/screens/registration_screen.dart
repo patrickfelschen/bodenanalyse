@@ -1,7 +1,7 @@
-//parts taken from: https://www.nintyzeros.com/2021/01/flutter-login-signup.html
-
 import 'dart:ui';
 
+import 'package:bodenanalyse/src/screens/home_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class RegistrationScreen extends StatefulWidget {
@@ -17,70 +17,87 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 200,
-        title:
-            Text (
-              "BODENGEFÜGE\nANALYSE",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 35,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-        ),
     body:
         Container(
             decoration: BoxDecoration(
             image: DecorationImage(
-            image: AssetImage("/Users/skotelen/Desktop/Durchwurzelung_des_Bodens_Weizen_Minus_2.jpg"),
-            fit: BoxFit.cover,
+            image: AssetImage("assets/images/start.png"),
+              fit: BoxFit.cover,
             ),),
 
           child: Column(
             children: [
-              Column(
-                children: [
-                  Padding(
-                      padding: EdgeInsets.symmetric(
-                        vertical: 50,
-                      ),
-                  ),
-
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: 40
+                Padding(
+                    padding: EdgeInsets.only(
+                      top: 130,bottom: 30
                     ),
-                    child: Column(
-                      children: [
-                        input(label: "NAME"),
-                        input(label: "E-MAIL"),
-                        input(label: "PASSWORT",obsureText: true)
-                      ],
+                  child:
+                    Text (
+                      "BODENGEFÜGE\nANALYSE",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 35,
+                      ),
                     ),
                   ),
 
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 40,vertical: 50),
-                    child: MaterialButton(
-                        minWidth: 100,
-                        height:60,
-                        onPressed: (){},
-                        color: Colors.blue,
-                        child:
-                          Text("REGISTRIEREN",style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 23,
-                          ),),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)
-                      ),
-                      ),
+                Padding(
+                  padding: EdgeInsets.only(
+                      left: 40,right:40,top:70
+                  ),
+                  child: Column(
+                    children: [
+                      input(label: "NAME"),
+                      input(label: "E-MAIL"),
+                      input(label: "PASSWORT",obsureText: true)
+                    ],
+                  ),
+                ),
+
+                Padding(
+                  padding: EdgeInsets.all(40),
+                  child: MaterialButton(
+                      minWidth: 200,
+                      height:60,
+                    onPressed: (){
+                      //todo: hier checken, ob Daten schon registriert, wenn nein -> Navigator.push
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomeScreen()),
+                      );
+                    },
+                      color: Color(0xFF8BA94D),
+                      child:
+                        Text("REGISTRIEREN",style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 23,
+                        ),),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)
                     ),
-                ],
+                    ),
+                  ),
+
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 40),
+                child: MaterialButton(
+                  minWidth: 200,
+                  height:60,
+                  onPressed: (){Navigator.pop(context);},
+                  //color: Color(0xFF8BA94D),
+                  child:
+                  Text("zurück",style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 23,
+                  ),),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)
+                  ),
+                ),
               ),
-            ],
-          ),
+              ],
+            ),
         ),
       );
 
@@ -95,19 +112,14 @@ Widget input({label,obsureText = false}){
     children: [
       Text(label,style:TextStyle(
           fontSize: 20,
-          fontWeight: FontWeight.bold,
-          color: Colors.black87
+        color: Colors.white,
       ),),
       SizedBox(height: 5,),
       TextField(
         obscureText: obsureText,
         decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(vertical: 0,horizontal: 10),
-          enabledBorder: OutlineInputBorder(
-
-          ),
-          border: OutlineInputBorder(
-          ),
+          fillColor: Colors.white70 ,filled: true,
         ),
       ),
       SizedBox(height: 30,)
@@ -117,20 +129,3 @@ Widget input({label,obsureText = false}){
   );
 
 }
-
-
-
-
-
-
-
-
-    /*return Scaffold(
-      appBar: AppBar(
-        title: Text("Registrierung"),
-      ),
-      body:
-        Text("Hallo"),
-    );
-  }
-}*/
