@@ -1,4 +1,4 @@
-import 'package:bodenanalyse/src/screens/global_setting_screen.dart';
+import 'package:bodenanalyse/src/screens/global_settings_screen.dart';
 import 'package:bodenanalyse/src/widgets/field_list_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
