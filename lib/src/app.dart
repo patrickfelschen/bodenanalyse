@@ -1,7 +1,7 @@
 import 'package:bodenanalyse/src/screens/analysis_start_screen.dart';
 import 'package:bodenanalyse/src/screens/edit_field_screen.dart';
 import 'package:bodenanalyse/src/screens/field_details_screen.dart';
-import 'package:bodenanalyse/src/screens/global_setting_screen.dart';
+import 'package:bodenanalyse/src/screens/global_settings_screen.dart';
 import 'package:bodenanalyse/src/screens/home_screen.dart';
 import 'package:bodenanalyse/src/screens/login_screen.dart';
 import 'package:bodenanalyse/src/screens/new_field_screen.dart';
