@@ -27,7 +27,7 @@ class _GlobalSettingsScreenState extends State<GlobalSettingsScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget> [
-                Center(child: Text('Tutorial überspringen')),
+                const Text('Tutorial überspringen'),
                 Switch(
                   value: _skipTutorial,
                   onChanged: (bool newValue) {
@@ -39,13 +39,13 @@ class _GlobalSettingsScreenState extends State<GlobalSettingsScreen> {
               ],
             )
           ),
-          Divider(),
+          const Divider(),
           Container(
             height: _containerHeight,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget> [
-                  Center(child: Text('Standort verwenden')),
+                  const Text('Standort verwenden'),
                   Switch(
                     value: _useLocation,
                     onChanged: (bool newValue) {
@@ -57,13 +57,13 @@ class _GlobalSettingsScreenState extends State<GlobalSettingsScreen> {
                 ],
               )
           ),
-          Divider(),
+          const Divider(),
           Container(
             height: _containerHeight,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget> [
-                  Center(child: Text('Daten synchronisieren')),
+                  const Text('Daten synchronisieren'),
                   Switch(
                     value: _syncData,
                     onChanged: (bool newValue) {
@@ -75,7 +75,7 @@ class _GlobalSettingsScreenState extends State<GlobalSettingsScreen> {
                 ],
               )
           ),
-          Divider(),
+          const Divider(),
           Container(
               height: _containerHeight,
               child: Row(
@@ -89,7 +89,7 @@ class _GlobalSettingsScreenState extends State<GlobalSettingsScreen> {
                 ],
               )
           ),
-          Divider(),
+          const Divider(),
           Container(
               height: _containerHeight,
               child: Row(
@@ -99,7 +99,7 @@ class _GlobalSettingsScreenState extends State<GlobalSettingsScreen> {
                 ],
               )
           ),
-          Divider(),
+          const Divider(),
           Container(
               height: _containerHeight,
               child: Row(
