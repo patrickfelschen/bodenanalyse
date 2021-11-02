@@ -17,6 +17,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       restorationScopeId: 'app',
       localizationsDelegates: const [
         AppLocalizations.delegate,
@@ -41,7 +42,7 @@ class App extends StatelessWidget {
       ),
       darkTheme: ThemeData.dark(),
       // Debug Option
-      // initialRoute: '/cultureFavoritesScreen',
+      initialRoute: LoginScreen.routeName,
       onGenerateRoute: (RouteSettings routeSettings) {
         return MaterialPageRoute<void>(
           settings: routeSettings,
