@@ -1,3 +1,4 @@
+import 'package:bodenanalyse/src/screens/global_setting_screen.dart';
 import 'package:bodenanalyse/src/widgets/field_list_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,17 +15,14 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     Text(
       'Index 0: Profil',
       style: optionStyle,
     ),
     FieldListWidget(),
-    Text(
-      'Index 2: Einstellungen',
-      style: optionStyle,
-    ),
+    GlobalSettingsScreen(),
   ];
 
   void _onItemTapped(int index) {
