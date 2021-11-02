@@ -13,14 +13,14 @@ class _GlobalSettingsScreenState extends State<GlobalSettingsScreen> {
   bool _skipTutorial = true;
   bool _useLocation = true;
   bool _syncData = true;
-  final double _Padding = 10.0;
+  final double _padding = 10.0;
   final double _containerHeight = 50.0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
-        padding: EdgeInsets.all(_Padding),
+        padding: EdgeInsets.all(_padding),
         children: <Widget>[
           Container(
             height: _containerHeight,
@@ -90,24 +90,39 @@ class _GlobalSettingsScreenState extends State<GlobalSettingsScreen> {
               )
           ),
           const Divider(),
-          Container(
-              height: _containerHeight,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const <Widget> [
-                  Text("Anmeldedaten Cloud"),
-                ],
-              )
+          GestureDetector(
+            child: Container(
+                height: _containerHeight,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const <Widget> [
+                    Text("Anmeldedaten Cloud"),
+                  ],
+                )
+            ),
+            onTap: () {
+              // TODO: Routing
+            },
           ),
           const Divider(),
-          Container(
+          GestureDetector(
+            child: Container(
               height: _containerHeight,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: const <Widget> [
                   Text("Über die App"),
                 ],
-              )
+              ),
+            ),
+            onTap: () {
+              showAboutDialog(
+                  context: context,
+                  applicationName: 'Bodengefüge',
+              applicationVersion: 'Version 0.1',
+              applicationLegalese: 'Eine App der Hochschule Osnabrück',
+              );
+            },
           ),
         ],
       ),
