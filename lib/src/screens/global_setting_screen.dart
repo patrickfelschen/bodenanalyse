@@ -13,7 +13,8 @@ class _GlobalSettingsScreenState extends State<GlobalSettingsScreen> {
   bool _skipTutorial = true;
   bool _useLocation = true;
   bool _syncData = true;
-  final double _horizontalPadding = 8.0;
+  final double _Padding = 10.0;
+  final double _containerHeight = 50.0;
 
   @override
   Widget build(BuildContext context) {
@@ -21,13 +22,15 @@ class _GlobalSettingsScreenState extends State<GlobalSettingsScreen> {
       appBar: AppBar(
         title: Text("Einstellungen"),
       ),
-      body: Column(
-        children: <Widget> [
-           Padding(padding: EdgeInsets.symmetric(horizontal: _horizontalPadding),
+      body: ListView(
+        padding: EdgeInsets.all(_Padding),
+        children: <Widget>[
+          Container(
+            height: _containerHeight,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget> [
-                Text("Tutorial überspringen"),
+                Center(child: Text('Tutorial überspringen')),
                 Switch(
                   value: _skipTutorial,
                   onChanged: (bool newValue) {
@@ -35,15 +38,17 @@ class _GlobalSettingsScreenState extends State<GlobalSettingsScreen> {
                       _skipTutorial = newValue;
                     });
                   },
-                )
+                ),
               ],
-            ),
+            )
           ),
-          Padding(padding: EdgeInsets.symmetric(horizontal: _horizontalPadding),
+          Divider(),
+          Container(
+            height: _containerHeight,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget> [
-                  Text("Standort verwenden"),
+                  Center(child: Text('Standort verwenden')),
                   Switch(
                     value: _useLocation,
                     onChanged: (bool newValue) {
@@ -51,51 +56,61 @@ class _GlobalSettingsScreenState extends State<GlobalSettingsScreen> {
                         _useLocation = newValue;
                       });
                     },
-                  )
+                  ),
                 ],
               )
           ),
-          Padding(padding: EdgeInsets.symmetric(horizontal: _horizontalPadding),
+          Divider(),
+          Container(
+            height: _containerHeight,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget> [
-                  Text("Daten synchronisieren"),
+                  Center(child: Text('Daten synchronisieren')),
                   Switch(
                     value: _syncData,
-                      onChanged: (bool newValue) {
-                        setState(() {
-                          _syncData = newValue;
+                    onChanged: (bool newValue) {
+                      setState(() {
+                        _syncData = newValue;
                       });
                     },
+                  ),
+                ],
+              )
+          ),
+          Divider(),
+          Container(
+              height: _containerHeight,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const <Widget> [
+                  Text("Sprachsteuerung", style: TextStyle(color: Colors.grey),),
+                  Switch(
+                      value: false,
+                      onChanged: null
                   )
                 ],
               )
           ),
-          Padding(padding: EdgeInsets.symmetric(horizontal: _horizontalPadding),
+          Divider(),
+          Container(
+              height: _containerHeight,
               child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const <Widget> [
-                    Text("Sprachsteuerung"),
-                    Switch(
-                        value: false,
-                        onChanged: null
-                    )
-                  ],
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const <Widget> [
+                  Text("Anmeldedaten Cloud"),
+                ],
               )
           ),
-          Padding(padding: EdgeInsets.all(_horizontalPadding),
-            child: Row(
-              children: const <Widget>[
-                Text("Anmeldedaten Cloud")
-              ]
-            ),
-          ),
-          Padding(padding: EdgeInsets.all(_horizontalPadding),
-            child: Row(
-                children: const <Widget>[
-                  Text("Über die App")
-                ]
-            ),
+          Divider(),
+          Container(
+              height: _containerHeight,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const <Widget> [
+                  Text("Über die App"),
+                ],
+              )
           ),
         ],
       ),
