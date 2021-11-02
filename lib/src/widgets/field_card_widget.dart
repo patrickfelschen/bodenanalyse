@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:bodenanalyse/src/models/field_model.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +17,7 @@ class FieldCard extends StatelessWidget {
 
     return Card(
         child: ExpansionTile(
-      childrenPadding: EdgeInsets.only(left: 16.0, right: 16.0),
+      childrenPadding: const EdgeInsets.only(left: 16.0, right: 16.0),
       title: Text('Feld 1'),
       children: <Widget>[
         Container(
@@ -24,7 +26,16 @@ class FieldCard extends StatelessWidget {
           child: GoogleMap(
             mapType: MapType.hybrid,
             initialCameraPosition: CameraPosition(
-                target: LatLng(37.42796133580664, -122.085749655962)),
+                target: LatLng(37.42796133580664, -122.085749655962),
+                zoom: 14.0),
+            gestureRecognizers: Set()
+              ..add(Factory<PanGestureRecognizer>(() => PanGestureRecognizer()))
+              ..add(Factory<VerticalDragGestureRecognizer>(
+                  () => VerticalDragGestureRecognizer())),
+            markers: Set()
+              ..add(Marker(
+                  markerId: MarkerId('1'),
+                  position: LatLng(37.42796133580664, -122.085749655962))),
             onMapCreated: (GoogleMapController controller) {
               _controller.complete(controller);
             },
@@ -33,20 +44,20 @@ class FieldCard extends StatelessWidget {
         Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+            children: const [
               Text(
                 'Feld 1',
-                style: const TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(fontWeight: FontWeight.bold),
               ),
               Text(
                 'Adresse',
-                style: const TextStyle(fontSize: 12),
+                style: TextStyle(fontSize: 12),
               )
             ],
           ),
           ElevatedButton(
             onPressed: () {},
-            child: Text('Öffnen'),
+            child: const Text('Öffnen'),
             style: ElevatedButton.styleFrom(primary: const Color(0xFF773117)),
           ),
         ])

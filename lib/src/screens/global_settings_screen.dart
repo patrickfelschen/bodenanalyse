@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'culture_favorites_screen.dart';
+
 class GlobalSettingsScreen extends StatefulWidget {
   const GlobalSettingsScreen({Key? key}) : super(key: key);
 
@@ -101,7 +103,7 @@ class _GlobalSettingsScreenState extends State<GlobalSettingsScreen> {
               ),
             ),
             onTap: (){
-              // TODO: Routing
+              Navigator.pushNamed(context, CultureFavoritesScreen.routeName);
             },
           ),
           const Divider(),
