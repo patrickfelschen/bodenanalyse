@@ -1,18 +1,15 @@
-class FieldModel {
+class CriteriaModel {
   final String id;
-  final String userId;
   final String name;
 
-  FieldModel({
+  CriteriaModel({
     required this.id,
-    required this.userId,
     required this.name,
   });
 
-  factory FieldModel.fromJson(Map<String, dynamic> json) {
-    return FieldModel(
+  factory CriteriaModel.fromJson(Map<String, dynamic> json) {
+    return CriteriaModel(
       id: json["id"] as String,
-      userId: json["userId"] as String,
       name: json["name"] as String,
     );
   }
@@ -20,7 +17,6 @@ class FieldModel {
   Map<String, dynamic> toJson() {
     return {
       "id": id,
-      "userId": userId,
       "name": name,
     };
   }
