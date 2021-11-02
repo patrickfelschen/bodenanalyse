@@ -19,9 +19,6 @@ class _GlobalSettingsScreenState extends State<GlobalSettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Einstellungen"),
-      ),
       body: ListView(
         padding: EdgeInsets.all(_Padding),
         children: <Widget>[
