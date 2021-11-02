@@ -39,7 +39,8 @@ class App extends StatelessWidget {
             ),
       ),
       darkTheme: ThemeData.dark(),
-      //initialRoute: LoginScreen.routeName,
+      // Debug Option
+      // initialRoute: '/editFieldScreen',
       onGenerateRoute: (RouteSettings routeSettings) {
         return MaterialPageRoute<void>(
           settings: routeSettings,
