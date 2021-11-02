@@ -28,8 +28,18 @@ class App extends StatelessWidget {
       ],
       onGenerateTitle: (BuildContext context) =>
           AppLocalizations.of(context)!.appTitle,
-      theme: ThemeData(),
+      //themeMode: ThemeMode.light,
+      theme: ThemeData(
+        fontFamily: "Poppins",
+        colorScheme: ColorScheme.fromSwatch().copyWith(
+            //brightness: Brightness.light,
+            //primary: const Color(0xFF8BA94D),
+            //background: const Color(0xFFF9F7F0),
+            //secondary: const Color(0xFF773117),
+            ),
+      ),
       darkTheme: ThemeData.dark(),
+      //initialRoute: LoginScreen.routeName,
       onGenerateRoute: (RouteSettings routeSettings) {
         return MaterialPageRoute<void>(
           settings: routeSettings,
