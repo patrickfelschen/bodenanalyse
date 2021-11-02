@@ -16,6 +16,9 @@ class _NewFieldScreenState extends State<NewFieldScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Feld hinzufügen"),
+      ),
       body:
             ListView(
               padding: EdgeInsets.only(top:8,left:8,right:8,bottom:200),
