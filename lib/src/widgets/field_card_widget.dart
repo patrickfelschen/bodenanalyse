@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:bodenanalyse/src/models/field_model.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +27,9 @@ class FieldCard extends StatelessWidget {
             mapType: MapType.hybrid,
             initialCameraPosition: CameraPosition(
                 target: LatLng(37.42796133580664, -122.085749655962)),
+            gestureRecognizers: Set()
+              ..add(Factory<PanGestureRecognizer>(() => PanGestureRecognizer()))
+              ..add(Factory<VerticalDragGestureRecognizer>(() => VerticalDragGestureRecognizer())),
             onMapCreated: (GoogleMapController controller) {
               _controller.complete(controller);
             },
@@ -46,7 +51,7 @@ class FieldCard extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {},
-            child: Text('Öffnen'),
+            child: const Text('Öffnen'),
             style: ElevatedButton.styleFrom(primary: const Color(0xFF773117)),
           ),
         ])
