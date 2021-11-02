@@ -1,4 +1,5 @@
 import 'package:bodenanalyse/src/screens/analysis_start_screen.dart';
+import 'package:bodenanalyse/src/screens/culture_favorites_screen.dart';
 import 'package:bodenanalyse/src/screens/edit_field_screen.dart';
 import 'package:bodenanalyse/src/screens/field_details_screen.dart';
 import 'package:bodenanalyse/src/screens/global_settings_screen.dart';
@@ -40,7 +41,7 @@ class App extends StatelessWidget {
       ),
       darkTheme: ThemeData.dark(),
       // Debug Option
-      // initialRoute: '/editFieldScreen',
+      // initialRoute: '/cultureFavoritesScreen',
       onGenerateRoute: (RouteSettings routeSettings) {
         return MaterialPageRoute<void>(
           settings: routeSettings,
@@ -62,6 +63,8 @@ class App extends StatelessWidget {
                 return NewFieldScreen();
               case RegistrationScreen.routeName:
                 return RegistrationScreen();
+              case CultureFavoritesScreen.routeName:
+                return CultureFavoritesScreen();
               default:
                 return HomeScreen();
             }
