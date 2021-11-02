@@ -92,6 +92,21 @@ class _GlobalSettingsScreenState extends State<GlobalSettingsScreen> {
           const Divider(),
           GestureDetector(
             child: Container(
+              height: _containerHeight,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const <Widget> [
+                  Text("Kulturfavoriten verwalten"),
+                ],
+              ),
+            ),
+            onTap: (){
+              // TODO: Routing
+            },
+          ),
+          const Divider(),
+          GestureDetector(
+            child: Container(
                 height: _containerHeight,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
