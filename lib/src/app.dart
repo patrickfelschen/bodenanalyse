@@ -1,3 +1,4 @@
+import 'package:bodenanalyse/src/screens/analysis_details_screen.dart';
 import 'package:bodenanalyse/src/screens/analysis_start_screen.dart';
 import 'package:bodenanalyse/src/screens/culture_favorites_screen.dart';
 import 'package:bodenanalyse/src/screens/edit_field_screen.dart';
@@ -72,7 +73,7 @@ class App extends StatelessWidget {
 
 
       // Debug Option
-      initialRoute: ProfileScreen.routeName,
+      // initialRoute: AnalysisDetailsScreen.routeName,
 
 
       onGenerateRoute: (RouteSettings routeSettings) {
@@ -100,6 +101,8 @@ class App extends StatelessWidget {
                 return CultureFavoritesScreen();
               case ProfileScreen.routeName:
                 return ProfileScreen();
+              case AnalysisDetailsScreen.routeName:
+                return AnalysisDetailsScreen();
               default:
                 return HomeScreen();
             }
