@@ -81,7 +81,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               child: Image.asset("assets/images/logoStart.png"),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 40, right: 40),
+              padding: EdgeInsets.only(
+              left: 60,right:60,
+            ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -158,7 +160,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 90),
+              padding: EdgeInsets.symmetric(horizontal: 100),
               child: MaterialButton(
                 minWidth: 200,
                 height: 60,

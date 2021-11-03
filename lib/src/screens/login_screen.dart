@@ -36,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
           child: ListView(
             children: [
               Padding(
-                padding: EdgeInsets.only(top: 0),
+                padding: EdgeInsets.symmetric(horizontal: 50),
                 child:
                 Image.asset("assets/images/logoStart.png"),
                 ),
@@ -44,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
               Padding(
                 padding: EdgeInsets.only(
-                    left: 40,right:40,
+                    left: 60,right:60,top:30,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
 
               Padding(
-                padding: EdgeInsets.only(left: 90,right: 90,bottom: 20),
+                padding: EdgeInsets.only(left: 110,right: 110,bottom: 20),
                 child: MaterialButton(
                   minWidth: 50,
                   height:60,
