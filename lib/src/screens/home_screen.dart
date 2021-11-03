@@ -1,4 +1,5 @@
 import 'package:bodenanalyse/src/screens/global_settings_screen.dart';
+import 'package:bodenanalyse/src/screens/profile_screen.dart';
 import 'package:bodenanalyse/src/widgets/field_list_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +7,7 @@ import 'package:flutter/material.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
-  static const routeName = '/';
+  static const routeName = '/homeScreen';
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -17,10 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Profil',
-      style: optionStyle,
-    ),
+    ProfileScreen(),
     FieldListWidget(),
     GlobalSettingsScreen(),
   ];

@@ -1,30 +1,23 @@
 import 'dart:convert';
 
 import 'package:bodenanalyse/src/models/user_model.dart';
+import 'package:bodenanalyse/src/services/shared_preferences_service.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthProvider with ChangeNotifier {
-  final String _baseUrl = "http://131.173.124.199:8080/";
-
+  late String _baseUrl;
+  late SharedPreferencesService _sharedPreferencesService;
   late UserModel currentUser;
   bool loggedIn = false;
 
-  Future<void> saveToken({
-    required String token,
-  }) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString("token", token);
-  }
-
-  Future<String?> loadToken() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getString("token");
+  AuthProvider() {
+    _baseUrl = "http://131.173.124.199:8080/";
+    _sharedPreferencesService = SharedPreferencesService();
   }
 
   Future<void> refreshCurrentUser() async {
-    String? token = await loadToken();
+    String? token = await _sharedPreferencesService.loadToken();
 
     if (token == null || token == "") {
       loggedIn = false;
@@ -32,11 +25,10 @@ class AuthProvider with ChangeNotifier {
     }
 
     Map<String, String>? reqHeader = {
-      "Content-Type": "application/json",
       "token": token,
     };
 
-    http.Response response = await http.post(
+    http.Response response = await http.get(
       Uri.parse(_baseUrl + "user"),
       headers: reqHeader,
     );
@@ -47,7 +39,13 @@ class AuthProvider with ChangeNotifier {
       loggedIn = true;
     }
 
-    notifyListeners();
+    print("POST Request:");
+    print(reqHeader);
+    print("RESPONSE:");
+    print("Status Code:" + response.statusCode.toString());
+    print(response.body);
+
+    //notifyListeners();
   }
 
   Future<void> signIn({
@@ -70,7 +68,7 @@ class AuthProvider with ChangeNotifier {
       String token = jsonBody["token"];
       UserModel user = UserModel.fromJson(jsonBody["user"]);
 
-      await saveToken(token: token);
+      await _sharedPreferencesService.saveToken(token: token);
 
       currentUser = user;
       loggedIn = true;
@@ -81,8 +79,6 @@ class AuthProvider with ChangeNotifier {
     print("RESPONSE:");
     print("Status Code:" + response.statusCode.toString());
     print(response.body);
-
-    notifyListeners();
   }
 
   Future<void> signUp({
@@ -110,7 +106,7 @@ class AuthProvider with ChangeNotifier {
       String token = jsonBody["token"];
       UserModel user = UserModel.fromJson(jsonBody["user"]);
 
-      await saveToken(token: token);
+      await _sharedPreferencesService.saveToken(token: token);
 
       currentUser = user;
       loggedIn = true;
@@ -121,13 +117,10 @@ class AuthProvider with ChangeNotifier {
     print("RESPONSE:");
     print("Status Code:" + response.statusCode.toString());
     print(response.body);
-
-    notifyListeners();
   }
 
   Future<void> signOut() async {
-    await saveToken(token: "");
+    await _sharedPreferencesService.saveToken(token: "");
     loggedIn = false;
-    notifyListeners();
   }
 }

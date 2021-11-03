@@ -23,22 +23,25 @@ class _FieldListWidgetState extends State<FieldListWidget> {
           FieldCard(
             fieldModel: FieldModel(
               id: 1,
-              userId: '',
-              name: '',
+              lat: 1.0,
+              lng: 1.0,
+              name: "name",
             ),
           ),
           FieldCard(
             fieldModel: FieldModel(
-              id: 2,
-              userId: '',
-              name: '',
+              id: 1,
+              lat: 1.0,
+              lng: 1.0,
+              name: "name",
             ),
           ),
           FieldCard(
             fieldModel: FieldModel(
-              id: 3,
-              userId: '',
-              name: '',
+              id: 1,
+              lat: 1.0,
+              lng: 1.0,
+              name: "name",
             ),
           ),
         ],

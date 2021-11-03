@@ -9,6 +9,7 @@ import 'package:bodenanalyse/src/screens/login_screen.dart';
 import 'package:bodenanalyse/src/screens/new_field_screen.dart';
 import 'package:bodenanalyse/src/screens/profile_screen.dart';
 import 'package:bodenanalyse/src/screens/registration_screen.dart';
+import 'package:bodenanalyse/src/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -70,28 +71,30 @@ class App extends StatelessWidget {
         settings: routeSettings,
         builder: (BuildContext context) {
           switch (routeSettings.name) {
+            case SplashScreen.routeName:
+              return const SplashScreen();
             case HomeScreen.routeName:
-              return HomeScreen();
+              return const HomeScreen();
             case FieldDetailsScreen.routeName:
-              return FieldDetailsScreen();
+              return const FieldDetailsScreen();
             case AnalysisStartScreen.routeName:
-              return AnalysisStartScreen();
+              return const AnalysisStartScreen();
             case EditFieldScreen.routeName:
-              return EditFieldScreen();
+              return const EditFieldScreen();
             case GlobalSettingsScreen.routeName:
-              return GlobalSettingsScreen();
+              return const GlobalSettingsScreen();
             case LoginScreen.routeName:
-              return LoginScreen();
+              return const LoginScreen();
             case NewFieldScreen.routeName:
-              return NewFieldScreen();
+              return const NewFieldScreen();
             case RegistrationScreen.routeName:
-              return RegistrationScreen();
+              return const RegistrationScreen();
             case CultureFavoritesScreen.routeName:
-              return CultureFavoritesScreen();
+              return const CultureFavoritesScreen();
             case ProfileScreen.routeName:
-              return ProfileScreen();
+              return const ProfileScreen();
             default:
-              return HomeScreen();
+              return const HomeScreen();
           }
         },
       );
@@ -119,7 +122,7 @@ class App extends StatelessWidget {
         themeMode: ThemeMode.light,
         theme: _theme,
         // Debug Option
-        initialRoute: RegistrationScreen.routeName,
+        //initialRoute: RegistrationScreen.routeName,
         onGenerateRoute: _onGenerateRoute,
       ),
     );

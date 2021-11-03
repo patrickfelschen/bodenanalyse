@@ -1,4 +1,5 @@
 import 'package:bodenanalyse/src/providers/auth_provider.dart';
+import 'package:bodenanalyse/src/screens/splash_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -37,7 +38,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       );
     }
 
-    void signUp() {
+    Future<void> signUp() async {
       String username = textController1.text.toString().trim();
       String email = textController2.text.toString().trim();
       String password = textController3.text.toString().trim();
@@ -57,13 +58,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         return;
       }
 
-      _authProvider.signUp(
+      await _authProvider.signUp(
         username: username,
         email: email,
         password: password,
       );
 
-      //Navigator.pushNamed(context, HomeScreen.routeName);
+      Navigator.pushNamed(context, SplashScreen.routeName);
     }
 
     return Scaffold(
@@ -171,7 +172,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   ),
                 ),
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
+                  borderRadius: BorderRadius.circular(10),
+                ),
               ),
             ),
             Flexible(
@@ -190,7 +192,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   ),
                 ),
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
+                  borderRadius: BorderRadius.circular(10),
+                ),
               ),
             ),
           ],
@@ -198,5 +201,4 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       ),
     );
   }
-
 }

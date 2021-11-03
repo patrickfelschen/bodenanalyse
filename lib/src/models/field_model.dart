@@ -1,18 +1,21 @@
 class FieldModel {
   final int id;
-  final String userId;
+  final double lat;
+  final double lng;
   final String name;
 
   FieldModel({
     required this.id,
-    required this.userId,
+    required this.lat,
+    required this.lng,
     required this.name,
   });
 
   factory FieldModel.fromJson(Map<String, dynamic> json) {
     return FieldModel(
       id: json["id"] as int,
-      userId: json["userId"] as String,
+      lat: json["lat"] as double,
+      lng: json["lng"] as double,
       name: json["name"] as String,
     );
   }
@@ -20,7 +23,8 @@ class FieldModel {
   Map<String, dynamic> toJson() {
     return {
       "id": id,
-      "userId": userId,
+      "lat": lat,
+      "lng": lng,
       "name": name,
     };
   }
