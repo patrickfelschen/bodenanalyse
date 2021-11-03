@@ -30,7 +30,7 @@ class _CultureFavoritesScreenState extends State<CultureFavoritesScreen> {
           ),
           Expanded(
             child: ListView(
-              padding: EdgeInsets.all(_padding),
+              /*padding: EdgeInsets.all(_padding),
               children: <Widget>[
                 Container(
                   height: _containerHeight,
@@ -61,7 +61,7 @@ class _CultureFavoritesScreenState extends State<CultureFavoritesScreen> {
                     ],
                   ),
                 )
-              ],
+              ],*/
             ),
           ),
         ],
