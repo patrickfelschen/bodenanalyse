@@ -1,4 +1,5 @@
 import 'package:bodenanalyse/src/providers/auth_provider.dart';
+import 'package:bodenanalyse/src/providers/crop_provider.dart';
 import 'package:bodenanalyse/src/screens/analysis_details_screen.dart';
 import 'package:bodenanalyse/src/screens/analysis_start_screen.dart';
 import 'package:bodenanalyse/src/screens/culture_favorites_screen.dart';
@@ -107,6 +108,9 @@ class App extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (_) => AuthProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => CropProvider(),
         ),
       ],
       child: MaterialApp(
