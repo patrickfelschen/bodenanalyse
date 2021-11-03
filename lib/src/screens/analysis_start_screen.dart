@@ -1,6 +1,5 @@
 import 'package:bodenanalyse/src/widgets/analysis_card_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:indexed/indexed.dart';
 import 'package:progress_stepper/progress_stepper.dart';
 
 class AnalysisStartScreen extends StatefulWidget {
