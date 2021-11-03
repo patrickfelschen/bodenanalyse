@@ -11,8 +11,18 @@ class NewFieldScreen extends StatefulWidget {
 }
 
 class _NewFieldScreenState extends State<NewFieldScreen> {
-  final double _padding = 8.0;
   final double _containerHeight = 50.0;
+
+  final textController1 = TextEditingController();
+  final textController2 = TextEditingController();
+
+  @override
+  void dispose() {
+    textController1.dispose();
+    textController2.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,10 +37,10 @@ class _NewFieldScreenState extends State<NewFieldScreen> {
                   height: _containerHeight,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const <Widget >[
+                    children: <Widget >[
                       Text('Name: '),
                       Flexible(
-                        child: TextField(),
+                        child: TextField(controller: textController1,),
                       ),
                     ],
                   ),
@@ -43,6 +53,7 @@ class _NewFieldScreenState extends State<NewFieldScreen> {
                     children: const <Widget> [
                       Text('Standort: '),
                       Text('Wird automatisch ermittelt', style: TextStyle(color: Colors.grey),)
+                      //todo: auf GoogleMaps verweisen?
                     ],
                   ),
                 ),
@@ -51,10 +62,10 @@ class _NewFieldScreenState extends State<NewFieldScreen> {
                   height: _containerHeight,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const <Widget> [
+                    children: <Widget> [
                       Text('Bodenart des Oberbodens: '),
                       Flexible(
-                        child: TextField(),
+                        child: TextField(controller: textController2,),
                       ),
                     ],
                   ),

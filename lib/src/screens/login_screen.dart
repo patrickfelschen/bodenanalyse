@@ -1,6 +1,6 @@
-import 'package:bodenanalyse/src/screens/home_screen.dart';
 import 'package:bodenanalyse/src/screens/registration_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:bodenanalyse/src/screens/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -12,6 +12,16 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final textController1 = TextEditingController();
+  final textController2 = TextEditingController();
+
+  @override
+  void dispose() {
+    textController1.dispose();
+    textController2.dispose();
+    super.dispose();
+  }
+
     @override
     Widget build(BuildContext context) {
       return Scaffold(
@@ -40,14 +50,43 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
 
+
               Padding(
                 padding: EdgeInsets.only(
                     left: 40,right:40,top:40
                 ),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    input(label: "E-MAIL"),
-                    input(label: "PASSWORT",obsureText: true)
+                    Text("E-MAIL",style:TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
+                    ),),
+                    SizedBox(height: 5,),
+                    TextField(
+                      controller: textController1,
+                      obscureText: false,
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.symmetric(vertical: 0,horizontal: 10),
+                        fillColor: Colors.white70 ,filled: true,
+                      ),
+                    ),
+                    SizedBox(height: 30,),
+
+                    Text("PASSWORT",style:TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
+                    ),),
+                    SizedBox(height: 5,),
+                    TextField(
+                      controller: textController2,
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.symmetric(vertical: 0,horizontal: 10),
+                        fillColor: Colors.white70 ,filled: true,
+                      ),
+                    ),
+                    SizedBox(height: 30,)
                   ],
                 ),
               ),
@@ -77,7 +116,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: MaterialButton(
                   onPressed: () {
                     Navigator.pushNamed(context, RegistrationScreen.routeName);
-                    },
+                  },
                   child:
                   Text("REGISTRIEREN",style: TextStyle(
                     color: Colors.white,
@@ -94,28 +133,4 @@ class _LoginScreenState extends State<LoginScreen> {
       );
 
     }
-
-  }
-
-
-  Widget input({label,obsureText = false}){
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(label,style:TextStyle(
-          fontSize: 20,
-          color: Colors.white,
-        ),),
-        SizedBox(height: 5,),
-        TextField(
-          obscureText: obsureText,
-          decoration: InputDecoration(
-            contentPadding: EdgeInsets.symmetric(vertical: 0,horizontal: 10),
-            fillColor: Colors.white70 ,filled: true,
-          ),
-        ),
-        SizedBox(height: 30,)
-      ],
-    );
-
   }

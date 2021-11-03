@@ -1,6 +1,5 @@
 import 'package:bodenanalyse/src/screens/home_screen.dart';
 import 'package:bodenanalyse/src/screens/field_details_screen.dart';
-import 'package:bodenanalyse/src/widgets/field_list_widget.dart';
 import 'package:flutter/material.dart';
 
 
@@ -14,8 +13,18 @@ class EditFieldScreen extends StatefulWidget {
 }
 
 class _EditFieldScreenState extends State<EditFieldScreen> {
-  final double _padding = 8.0;
   final double _containerHeight = 50.0;
+
+  final textController1 = TextEditingController();
+  final textController2 = TextEditingController();
+
+  @override
+  void dispose() {
+    textController1.dispose();
+    textController2.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,10 +39,10 @@ class _EditFieldScreenState extends State<EditFieldScreen> {
             height: _containerHeight,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const <Widget >[
+              children: <Widget >[
                 Text('Name: '),
                 Flexible(
-                  child: TextField(),
+                  child: TextField(controller: textController1,),
                 ),
               ],
             ),
@@ -54,10 +63,10 @@ class _EditFieldScreenState extends State<EditFieldScreen> {
             height: _containerHeight,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const <Widget> [
+              children: <Widget> [
                 Text('Bodenart des Oberbodens: '),
                 Flexible(
-                  child: TextField(),
+                  child: TextField(controller: textController2,),
                 ),
               ],
             ),
@@ -85,8 +94,25 @@ Widget buttons(BuildContext context){
           child:
           FloatingActionButton.extended(
             onPressed: (){
-              Navigator.pushNamed(context, HomeScreen.routeName);
-              //todo: Feld löschen
+              showDialog<String>(
+                  context: context,
+                  builder: (BuildContext context) => AlertDialog(
+                title: const Text('Löschen'),
+                content: const Text('Wollen Sie das Feld wirklich löschen?'),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () => Navigator.pop(context, 'Cancel'),
+                    child: const Text('Abbrechen'),
+                  ),
+                  TextButton(
+                    onPressed: () {Navigator.pushNamed(context, HomeScreen.routeName);
+                      //todo: Feld löschen
+                    },
+                    child: const Text('Löschen', style: TextStyle(color: Colors.red),),
+                  ),
+                ],
+              ),
+              );
             },
             label: const Text('Feld löschen', style: TextStyle(color: Colors.white),),
             backgroundColor: Color(0xFF5E230B),

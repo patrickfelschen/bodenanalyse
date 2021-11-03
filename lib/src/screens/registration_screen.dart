@@ -14,6 +14,18 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
+  final textController1 = TextEditingController();
+  final textController2 = TextEditingController();
+  final textController3 = TextEditingController();
+
+  @override
+  void dispose() {
+    textController1.dispose();
+    textController2.dispose();
+    textController3.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,10 +59,52 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       left: 40,right:40,top:30
                   ),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      input(label: "NAME"),
-                      input(label: "E-MAIL"),
-                      input(label: "PASSWORT",obsureText: true)
+                      Text("NAME",style:TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                      ),),
+                      SizedBox(height: 5,),
+                      TextField(
+                        controller: textController1,
+                        obscureText: false,
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(vertical: 0,horizontal: 10),
+                          fillColor: Colors.white70 ,filled: true,
+                        ),
+                      ),
+                      SizedBox(height: 30,),
+
+                      Text("E-MAIL",style:TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                      ),),
+                      SizedBox(height: 5,),
+                      TextField(
+                        controller: textController2,
+                        obscureText: false,
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(vertical: 0,horizontal: 10),
+                          fillColor: Colors.white70 ,filled: true,
+                        ),
+                      ),
+                      SizedBox(height: 30,),
+
+                      Text("PASSWORT",style:TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                      ),),
+                      SizedBox(height: 5,),
+                      TextField(
+                        controller: textController3,
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(vertical: 0,horizontal: 10),
+                          fillColor: Colors.white70 ,filled: true,
+                        ),
+                      ),
+                      SizedBox(height: 30,)
                     ],
                   ),
                 ),
@@ -61,10 +115,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       height:60,
                     onPressed: (){
                       //todo: hier checken, ob Daten schon registriert, wenn nein -> Navigator.push
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()),
-                      );
+                      Navigator.pushNamed(context, HomeScreen.routeName);
                     },
                       color: Color(0xFF8BA94D),
                       child:
@@ -100,30 +151,5 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       );
 
   }
-
-}
-
-
-Widget input({label,obsureText = false}){
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Text(label,style:TextStyle(
-          fontSize: 20,
-        color: Colors.white,
-      ),),
-      SizedBox(height: 5,),
-      TextField(
-        obscureText: obsureText,
-        decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(vertical: 0,horizontal: 10),
-          fillColor: Colors.white70 ,filled: true,
-        ),
-      ),
-      SizedBox(height: 30,)
-
-    ],
-
-  );
 
 }
