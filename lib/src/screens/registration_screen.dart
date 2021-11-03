@@ -44,7 +44,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
                 Padding(
                   padding: EdgeInsets.only(
-                      left: 40,right:40,top:70
+                      left: 40,right:40,top:30
                   ),
                   child: Column(
                     children: [
@@ -55,8 +55,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   ),
                 ),
 
-                Padding(
-                  padding: EdgeInsets.all(40),
+                Flexible(
                   child: MaterialButton(
                       minWidth: 200,
                       height:60,
@@ -79,8 +78,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     ),
                   ),
 
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 40),
+              Flexible(
                 child: MaterialButton(
                   minWidth: 200,
                   height:60,

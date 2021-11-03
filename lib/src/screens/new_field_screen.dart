@@ -53,36 +53,37 @@ class _NewFieldScreenState extends State<NewFieldScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: const <Widget> [
                       Text('Bodenart des Oberbodens: '),
-                    ],
-                  ),
-                ),
-                const Divider(),
-                Container(
-                  height: _containerHeight,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const <Widget> [
-                      Text('Kulturauswahl: '),
+                      Flexible(
+                        child: TextField(),
+                      ),
                     ],
                   ),
                 ),
                 const Divider(),
 
-               //todo: Wie sieht es eingebunden in Menü aus?
-               Container(
-                  height: 300,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  ),
-                ),
 
-                FloatingActionButton.extended(
-                  onPressed: (){},//todo: neues Feld anlegen
-                  label: const Text('Feld speichern', style: TextStyle(color: Colors.white),),
-                  backgroundColor: Color(0xFF8BA94D),
-                ),
             ],
           ),
+
+      floatingActionButton: saveButton(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+
     );
   }
 }
+
+Widget saveButton(){
+  return SizedBox(
+    width: 350,
+    child:
+    FloatingActionButton.extended(
+      onPressed: (){},//todo: neues Feld anlegen
+      label: const Text('Feld speichern', style: TextStyle(color: Colors.white),),
+      backgroundColor: Color(0xFF8BA94D),
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10)
+      ),
+    ),
+  );
+}
+

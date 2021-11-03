@@ -42,7 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
               Padding(
                 padding: EdgeInsets.only(
-                    left: 40,right:40,top:70
+                    left: 40,right:40,top:40
                 ),
                 child: Column(
                   children: [
@@ -53,16 +53,13 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
 
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 40,vertical: 50),
+                padding: EdgeInsets.only(bottom:40),
                 child: MaterialButton(
                   minWidth: 200,
                   height:60,
-                  onPressed: (){
+                  onPressed: () {
                     //todo: hier checken, ob Anmeldedaten stimmen, wenn ja -> Navigator.push
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => HomeScreen()),
-                    );
+                    Navigator.pushNamed(context, HomeScreen.routeName);
                   },
                   color: Color(0xFF8BA94D),
                   child:
@@ -76,14 +73,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
 
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 40),
+              Flexible(
                 child: MaterialButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => RegistrationScreen()),
-                    );
+                    Navigator.pushNamed(context, RegistrationScreen.routeName);
                     },
                   child:
                   Text("REGISTRIEREN",style: TextStyle(
@@ -122,9 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
         SizedBox(height: 30,)
-
       ],
-
     );
 
   }
