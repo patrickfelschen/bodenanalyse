@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthProvider with ChangeNotifier {
-  final String _baseUrl = "http:/a/";
+  final String _baseUrl = "http://131.173.124.199:8080/";
 
   late UserModel currentUser;
   bool loggedIn = false;
@@ -32,6 +32,7 @@ class AuthProvider with ChangeNotifier {
     }
 
     Map<String, String>? reqHeader = {
+      "Content-Type": "application/json",
       "token": token,
     };
 
@@ -60,6 +61,7 @@ class AuthProvider with ChangeNotifier {
 
     http.Response response = await http.post(
       Uri.parse(_baseUrl + "login"),
+      headers: {"Content-Type": "application/json"},
       body: reqBody,
     );
 
@@ -94,9 +96,12 @@ class AuthProvider with ChangeNotifier {
       "password": password,
     };
 
+    var body = json.encode(reqBody);
+
     http.Response response = await http.post(
       Uri.parse(_baseUrl + "registration"),
-      body: reqBody,
+      headers: {"Content-Type": "application/json"},
+      body: body,
     );
 
     if (response.statusCode == 200) {
