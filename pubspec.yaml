@@ -20,6 +20,7 @@ dependencies:
   shared_preferences: ^2.0.8
   progress_stepper: ^0.1.1
   http: ^0.13.4
+  easy_search: any
 
 dev_dependencies:
   flutter_test:
@@ -36,6 +37,7 @@ flutter:
   assets:
     # Add assets from the images directory to the application.
     - assets/images/start.png
+    - assets/images/logoStart.png
 
 
   fonts:

@@ -115,7 +115,7 @@ Widget buttons(BuildContext context){
               );
             },
             label: const Text('Feld löschen', style: TextStyle(color: Colors.white),),
-            backgroundColor: Color(0xFF5E230B),
+            backgroundColor: Theme.of(context).colorScheme.secondary,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10)
             ),
@@ -135,7 +135,7 @@ Widget buttons(BuildContext context){
               //todo: neues Feld anlegen
             },
             label: const Text('Feld speichern', style: TextStyle(color: Colors.white),),
-            backgroundColor: Color(0xFF8BA94D),
+            backgroundColor: Theme.of(context).colorScheme.primary,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10)
             ),

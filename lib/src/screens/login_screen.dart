@@ -36,19 +36,10 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             children: [
               Padding(
-                padding: EdgeInsets.only(
-                    top: 130,bottom: 30
-                ),
+                padding: EdgeInsets.only(top: 90),
                 child:
-                Text (
-                  "BODENGEFÜGE\nANALYSE",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 35,
-                  ),
+                Image.asset("assets/images/logoStart.png"),
                 ),
-              ),
 
 
               Padding(
@@ -100,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     //todo: hier checken, ob Anmeldedaten stimmen, wenn ja -> Navigator.push
                     Navigator.pushNamed(context, HomeScreen.routeName);
                   },
-                  color: Color(0xFF8BA94D),
+                  color: Theme.of(context).colorScheme.primary,
                   child:
                   Text("LOGIN",style: TextStyle(
                     color: Colors.white,

@@ -76,21 +76,21 @@ class _NewFieldScreenState extends State<NewFieldScreen> {
             ],
           ),
 
-      floatingActionButton: saveButton(),
+      floatingActionButton: saveButton(context),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
 
     );
   }
 }
 
-Widget saveButton(){
+Widget saveButton(context){
   return SizedBox(
     width: 350,
     child:
     FloatingActionButton.extended(
       onPressed: (){},//todo: neues Feld anlegen
       label: const Text('Feld speichern', style: TextStyle(color: Colors.white),),
-      backgroundColor: Color(0xFF8BA94D),
+      backgroundColor: Theme.of(context).colorScheme.primary,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10)
       ),

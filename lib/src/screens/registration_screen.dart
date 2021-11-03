@@ -39,20 +39,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
           child: Column(
             children: [
-                Padding(
-                    padding: EdgeInsets.only(
-                      top: 130,bottom: 30
-                    ),
-                  child:
-                    Text (
-                      "BODENGEFÜGE\nANALYSE",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 35,
-                      ),
-                    ),
-                  ),
+              Padding(
+                padding: EdgeInsets.only(top: 60),
+                child:
+                Image.asset("assets/images/logoStart.png"),
+              ),
 
                 Padding(
                   padding: EdgeInsets.only(
@@ -117,7 +108,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       //todo: hier checken, ob Daten schon registriert, wenn nein -> Navigator.push
                       Navigator.pushNamed(context, HomeScreen.routeName);
                     },
-                      color: Color(0xFF8BA94D),
+                      color: Theme.of(context).colorScheme.primary,
                       child:
                         Text("REGISTRIEREN",style: TextStyle(
                           color: Colors.white,
