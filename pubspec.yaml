@@ -18,6 +18,7 @@ dependencies:
   google_maps_flutter: ^2.1.0
   provider: ^6.0.1
   shared_preferences: ^2.0.8
+  progress_stepper: ^0.1.1
 
 
 dev_dependencies:
