@@ -1,9 +1,35 @@
 import 'package:flutter/foundation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthProvider with ChangeNotifier {
-  void signIn({required String email, required String password}) {}
 
-  void signUp({required String email, required String password}) {}
+  Future<void> saveToken({
+    required String token,
+  }) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString("token", token);
+  }
 
-  void signOut() {}
+  Future<String?> loadToken() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString("token");
+  }
+
+  Future<void> signIn({
+    required String email,
+    required String password,
+  }) async {
+    notifyListeners();
+  }
+
+  Future<void> signUp({
+    required String email,
+    required String password,
+  }) async {
+    notifyListeners();
+  }
+
+  Future<void> signOut() async {
+    notifyListeners();
+  }
 }
