@@ -1,4 +1,4 @@
-import 'package:bodenanalyse/src/screens/analysis_details_screen.dart';
+import 'package:bodenanalyse/src/providers/auth_provider.dart';
 import 'package:bodenanalyse/src/screens/analysis_start_screen.dart';
 import 'package:bodenanalyse/src/screens/culture_favorites_screen.dart';
 import 'package:bodenanalyse/src/screens/edit_field_screen.dart';
@@ -12,6 +12,7 @@ import 'package:bodenanalyse/src/screens/registration_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -24,7 +25,7 @@ class App extends StatelessWidget {
     const _menuColor = Color(0xFFC4C4C4);
     const _textColor = Color(0xFF141414);
 
-    Color getTrackColor(Set<MaterialState> states) {
+    Color _getTrackColor(Set<MaterialState> states) {
       const Set<MaterialState> interactiveStates = <MaterialState>{
         MaterialState.selected,
         MaterialState.hovered,
@@ -36,79 +37,91 @@ class App extends StatelessWidget {
       return Colors.grey;
     }
 
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      restorationScopeId: 'app',
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: const [
-        Locale('en', ''), // English, no country code
-      ],
-      onGenerateTitle: (BuildContext context) =>
-          AppLocalizations.of(context)!.appTitle,
-      themeMode: ThemeMode.light,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSwatch().copyWith(
-          brightness: Brightness.light,
-          primary: _primaryColor,
-          secondary: _secondaryColor,
-          // Menühintergrund
-          background: _menuColor,
+    ThemeData _theme = ThemeData(
+      colorScheme: ColorScheme.fromSwatch().copyWith(
+        brightness: Brightness.light,
+        primary: _primaryColor,
+        secondary: _secondaryColor,
+        // Menühintergrund
+        background: _menuColor,
+      ),
+      appBarTheme: const AppBarTheme(
+        centerTitle: true,
+      ),
+      fontFamily: "Poppins",
+      primaryTextTheme: const TextTheme().apply(
+        bodyColor: _textColor,
+        displayColor: _textColor,
+      ),
+      primaryColor: _primaryColor,
+      scaffoldBackgroundColor: _scaffoldColor,
+      switchTheme: SwitchThemeData(
+        trackColor: MaterialStateProperty.resolveWith(
+          _getTrackColor,
         ),
-        appBarTheme: const AppBarTheme(centerTitle: true),
-        fontFamily: "Poppins",
-        primaryTextTheme: const TextTheme()
-            .apply(bodyColor: _textColor, displayColor: _textColor),
-        primaryColor: _primaryColor,
-        scaffoldBackgroundColor: _scaffoldColor,
-        switchTheme: SwitchThemeData(
-          trackColor: MaterialStateProperty.resolveWith(getTrackColor),
-          thumbColor: MaterialStateProperty.all(Colors.white),
+        thumbColor: MaterialStateProperty.all(
+          Colors.white,
         ),
       ),
+    );
 
+    Route<dynamic> _onGenerateRoute(RouteSettings routeSettings) {
+      return MaterialPageRoute<void>(
+        settings: routeSettings,
+        builder: (BuildContext context) {
+          switch (routeSettings.name) {
+            case HomeScreen.routeName:
+              return HomeScreen();
+            case FieldDetailsScreen.routeName:
+              return FieldDetailsScreen();
+            case AnalysisStartScreen.routeName:
+              return AnalysisStartScreen();
+            case EditFieldScreen.routeName:
+              return EditFieldScreen();
+            case GlobalSettingsScreen.routeName:
+              return GlobalSettingsScreen();
+            case LoginScreen.routeName:
+              return LoginScreen();
+            case NewFieldScreen.routeName:
+              return NewFieldScreen();
+            case RegistrationScreen.routeName:
+              return RegistrationScreen();
+            case CultureFavoritesScreen.routeName:
+              return CultureFavoritesScreen();
+            case ProfileScreen.routeName:
+              return ProfileScreen();
+            default:
+              return HomeScreen();
+          }
+        },
+      );
+    }
 
-      // Debug Option
-      // initialRoute: AnalysisDetailsScreen.routeName,
-
-
-      onGenerateRoute: (RouteSettings routeSettings) {
-        return MaterialPageRoute<void>(
-          settings: routeSettings,
-          builder: (BuildContext context) {
-            switch (routeSettings.name) {
-              case HomeScreen.routeName:
-                return HomeScreen();
-              case FieldDetailsScreen.routeName:
-                return FieldDetailsScreen();
-              case AnalysisStartScreen.routeName:
-                return AnalysisStartScreen();
-              case EditFieldScreen.routeName:
-                return EditFieldScreen();
-              case GlobalSettingsScreen.routeName:
-                return GlobalSettingsScreen();
-              case LoginScreen.routeName:
-                return LoginScreen();
-              case NewFieldScreen.routeName:
-                return NewFieldScreen();
-              case RegistrationScreen.routeName:
-                return RegistrationScreen();
-              case CultureFavoritesScreen.routeName:
-                return CultureFavoritesScreen();
-              case ProfileScreen.routeName:
-                return ProfileScreen();
-              case AnalysisDetailsScreen.routeName:
-                return AnalysisDetailsScreen();
-              default:
-                return HomeScreen();
-            }
-          },
-        );
-      },
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => AuthProvider(),
+        ),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        restorationScopeId: 'app',
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: const [
+          Locale('en', ''), // English, no country code
+          Locale('de', 'DE'),
+        ],
+        themeMode: ThemeMode.light,
+        theme: _theme,
+        // Debug Option
+        initialRoute: RegistrationScreen.routeName,
+        onGenerateRoute: _onGenerateRoute,
+      ),
     );
   }
 }
