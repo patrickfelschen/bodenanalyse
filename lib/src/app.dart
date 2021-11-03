@@ -30,7 +30,7 @@ class App extends StatelessWidget {
         MaterialState.focused,
       };
       if (states.any(interactiveStates.contains)) {
-        return _secondaryColor;
+        return _primaryColor;
       }
       return Colors.grey;
     }
@@ -69,8 +69,12 @@ class App extends StatelessWidget {
           thumbColor: MaterialStateProperty.all(Colors.white),
         ),
       ),
+
+
       // Debug Option
-      // initialRoute: ProfileScreen.routeName,
+      initialRoute: ProfileScreen.routeName,
+
+
       onGenerateRoute: (RouteSettings routeSettings) {
         return MaterialPageRoute<void>(
           settings: routeSettings,
