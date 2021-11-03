@@ -57,10 +57,12 @@ class AuthProvider with ChangeNotifier {
       "password": password,
     };
 
+    String bodyEncoded = json.encode(reqBody);
+
     http.Response response = await http.post(
       Uri.parse(_baseUrl + "login"),
       headers: {"Content-Type": "application/json"},
-      body: reqBody,
+      body: bodyEncoded,
     );
 
     if (response.statusCode == 200) {
@@ -92,12 +94,12 @@ class AuthProvider with ChangeNotifier {
       "password": password,
     };
 
-    var body = json.encode(reqBody);
+    String bodyEncoded = json.encode(reqBody);
 
     http.Response response = await http.post(
       Uri.parse(_baseUrl + "registration"),
       headers: {"Content-Type": "application/json"},
-      body: body,
+      body: bodyEncoded,
     );
 
     if (response.statusCode == 200) {
