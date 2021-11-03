@@ -29,7 +29,7 @@ class AnalysisCard extends StatelessWidget {
     if (badExample) {
       cardAlignment = Alignment.centerLeft;
       cardMargin =
-          EdgeInsets.only(left: MediaQuery.of(context).size.width / 20);
+          EdgeInsets.only(left: MediaQuery.of(context).size.width / 20, top: 20);
       cardColor = Theme.of(context).colorScheme.secondary;
     } else {
       cardAlignment = Alignment.centerRight;
@@ -44,7 +44,16 @@ class AnalysisCard extends StatelessWidget {
           width: 250,
           decoration: BoxDecoration(
               border: Border.all(width: 4, color: cardColor),
-              borderRadius: BorderRadius.all(Radius.circular(4))),
+              borderRadius: BorderRadius.all(Radius.circular(4)),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.5),
+                  spreadRadius: 5,
+                  blurRadius: 7,
+                  offset: Offset(0, 3)
+                )
+              ]
+          ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [

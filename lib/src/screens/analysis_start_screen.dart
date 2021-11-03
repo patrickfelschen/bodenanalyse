@@ -14,7 +14,7 @@ class AnalysisStartScreen extends StatefulWidget {
 class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
   var testList = List.empty();
   int _steps = 6;
-  int _counter = 0;
+  int _counter = 1;
   List<int> widgetIds = [0, 1];
   int index = 0;
 
@@ -82,7 +82,10 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
           currentStep: _counter,
           progressColor: Color(0xFF8BA94D),
         )),
-        Text('Struktur der Oberfläche', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),),
+        Text(
+          'Struktur der Oberfläche',
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+        ),
         Stack(
           children: _stackChildren,
         ),
@@ -93,8 +96,72 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
               size: 50,
               color: Theme.of(context).colorScheme.primary,
             )),
-
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [RatingButtonBar(context)],
+        )
       ]),
     ));
+  }
+
+  ButtonBar RatingButtonBar(BuildContext context) {
+    Color textColor = Colors.white;
+    double fontSize = 20;
+    return ButtonBar(
+      alignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        ElevatedButton(
+          onPressed: null,
+          child: Text(
+            '-2',
+            style: TextStyle(color: textColor, fontSize: fontSize),
+          ),
+          style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(
+                  Theme.of(context).colorScheme.secondary)),
+        ),
+        ElevatedButton(
+          onPressed: null,
+          child: Text(
+            '-1',
+            style: TextStyle(color: textColor, fontSize: fontSize),
+          ),
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all<Color>(
+                Theme.of(context).colorScheme.secondary.withOpacity(0.5)),
+          ),
+        ),
+        ElevatedButton(
+          onPressed: () {},
+          child: Text(
+            '0',
+            style: TextStyle(color: Colors.black, fontSize: fontSize),
+          ),
+          style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(
+                  Colors.white)),
+        ),
+        ElevatedButton(
+          onPressed: null,
+          child: Text(
+            '+1',
+            style: TextStyle(color: textColor, fontSize: fontSize),
+          ),
+          style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(
+                  Theme.of(context).colorScheme.primary.withOpacity(0.5))),
+        ),
+        ElevatedButton(
+          onPressed: null,
+          child: Text(
+            '+2',
+            style: TextStyle(color: textColor, fontSize: fontSize),
+          ),
+          style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(
+                  Theme.of(context).colorScheme.primary)),
+        )
+      ],
+    );
   }
 }
