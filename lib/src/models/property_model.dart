@@ -1,7 +1,7 @@
 import 'package:bodenanalyse/src/models/criteria_model.dart';
 
 class PropertyModel {
-  final String id;
+  final int id;
   final int rating;
   final String url;
   final CriteriaModel criteria;
@@ -15,7 +15,7 @@ class PropertyModel {
 
   factory PropertyModel.fromJson(Map<String, dynamic> json) {
     return PropertyModel(
-      id: json["id"] as String,
+      id: json["id"] as int,
       rating: json["rating"] as int,
       url: json["url"] as String,
       criteria: CriteriaModel.fromJson(json["criteria"]),

@@ -1,13 +1,15 @@
 import 'package:bodenanalyse/src/models/crop_model.dart';
+import 'package:bodenanalyse/src/models/property_model.dart';
 import 'package:bodenanalyse/src/models/soil_model.dart';
 
 class SampleModel {
-  final String id;
+  final int id;
   final DateTime datetime;
   final double lat;
   final double lng;
   final SoilModel soilModel;
   final CropModel cropModel;
+  final List<PropertyModel> properties;
 
   SampleModel({
     required this.id,
@@ -16,16 +18,38 @@ class SampleModel {
     required this.lng,
     required this.soilModel,
     required this.cropModel,
+    required this.properties,
   });
 
   factory SampleModel.fromJson(Map<String, dynamic> json) {
     return SampleModel(
-      id: json["id"],
-      datetime: json["datetime"],
-      lat: json["lat"],
-      lng: json["lng"],
+      id: json["id"] as int,
+      datetime: json["datetime"] as DateTime,
+      lat: json["lat"] as double,
+      lng: json["lng"] as double,
       soilModel: SoilModel.fromJson(json["soil"]),
       cropModel: CropModel.fromJson(json["crop"]),
+      properties: List<PropertyModel>.from(
+        json["properties"].map(
+          (e) => PropertyModel.fromJson(e),
+        ),
+      ),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      "id": id,
+      "datetime": datetime,
+      "lat": lat,
+      "lng": lng,
+      "soil": soilModel.toJson(),
+      "crop": cropModel.toJson(),
+      "properties": properties
+          .map(
+            (e) => e.toJson(),
+          )
+          .toList()
+    };
   }
 }

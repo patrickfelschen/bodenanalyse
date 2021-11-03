@@ -1,5 +1,5 @@
 class CropModel {
-  final String id;
+  final int id;
   final String type;
 
   CropModel({
@@ -9,7 +9,7 @@ class CropModel {
 
   factory CropModel.fromJson(Map<String, dynamic> json) {
     return CropModel(
-      id: json["id"] as String,
+      id: json["id"] as int,
       type: json["type"] as String,
     );
   }

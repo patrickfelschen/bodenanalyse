@@ -1,5 +1,5 @@
 class SoilModel {
-  final String id;
+  final int id;
   final String type;
 
   SoilModel({
@@ -9,7 +9,7 @@ class SoilModel {
 
   factory SoilModel.fromJson(Map<String, dynamic> json) {
     return SoilModel(
-      id: json["id"] as String,
+      id: json["id"] as int,
       type: json["type"] as String,
     );
   }

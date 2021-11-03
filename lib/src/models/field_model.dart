@@ -1,5 +1,5 @@
 class FieldModel {
-  final String id;
+  final int id;
   final String userId;
   final String name;
 
@@ -11,7 +11,7 @@ class FieldModel {
 
   factory FieldModel.fromJson(Map<String, dynamic> json) {
     return FieldModel(
-      id: json["id"] as String,
+      id: json["id"] as int,
       userId: json["userId"] as String,
       name: json["name"] as String,
     );

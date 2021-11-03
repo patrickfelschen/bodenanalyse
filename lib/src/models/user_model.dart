@@ -1,7 +1,7 @@
 import 'package:bodenanalyse/src/models/settings_model.dart';
 
 class UserModel {
-  final String id;
+  final int id;
   final String email;
   final SettingsModel settingsModel;
 
@@ -13,7 +13,7 @@ class UserModel {
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
-      id: json["id"] as String,
+      id: json["id"] as int,
       email: json["email"] as String,
       settingsModel: SettingsModel.fromJson(json["settings"]),
     );

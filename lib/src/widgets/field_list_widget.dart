@@ -22,21 +22,21 @@ class _FieldListWidgetState extends State<FieldListWidget> {
         children: <Widget>[
           FieldCard(
             fieldModel: FieldModel(
-              id: '',
+              id: 1,
               userId: '',
               name: '',
             ),
           ),
           FieldCard(
             fieldModel: FieldModel(
-              id: '',
+              id: 2,
               userId: '',
               name: '',
             ),
           ),
           FieldCard(
             fieldModel: FieldModel(
-              id: '',
+              id: 3,
               userId: '',
               name: '',
             ),

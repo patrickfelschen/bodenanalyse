@@ -1,5 +1,5 @@
 class SettingsModel {
-  final String id;
+  final int id;
   final bool tutorial;
   final bool location;
   final bool sync;
@@ -15,7 +15,7 @@ class SettingsModel {
 
   factory SettingsModel.fromJson(Map<String, dynamic> json) {
     return SettingsModel(
-      id: json["id"] as String,
+      id: json["id"] as int,
       tutorial: json["tutorial"] as bool,
       location: json["location"] as bool,
       sync: json["sync"] as bool,
