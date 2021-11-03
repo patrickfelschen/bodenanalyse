@@ -66,7 +66,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 40),
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {Navigator.pushNamed(context, LoginScreen.routeName);},
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                   minimumSize: Size(400, 50),
