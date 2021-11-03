@@ -1,5 +1,6 @@
 import 'package:bodenanalyse/src/providers/auth_provider.dart';
 import 'package:bodenanalyse/src/screens/home_screen.dart';
+import 'package:bodenanalyse/src/screens/registration_screen.dart';
 import 'package:bodenanalyse/src/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -129,7 +130,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(bottom: 40),
+              padding: EdgeInsets.symmetric(horizontal: 100),
               child: MaterialButton(
                 minWidth: 200,
                 height: 60,
