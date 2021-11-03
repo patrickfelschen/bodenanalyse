@@ -12,6 +12,8 @@ class FieldDetailsScreen extends StatefulWidget {
 class _FieldDetailsScreenState extends State<FieldDetailsScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Container(),
+    );
   }
 }

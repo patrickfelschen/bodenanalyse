@@ -1,10 +1,11 @@
 import 'dart:async';
 
+import 'package:bodenanalyse/src/models/field_model.dart';
+import 'package:bodenanalyse/src/screens/field_details_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:bodenanalyse/src/models/field_model.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class FieldCard extends StatelessWidget {
   final FieldModel fieldModel;
@@ -56,7 +57,9 @@ class FieldCard extends StatelessWidget {
             ],
           ),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, FieldDetailsScreen.routeName);
+            },
             child: const Text('Öffnen'),
             style: ElevatedButton.styleFrom(primary: const Color(0xFF773117)),
           ),
