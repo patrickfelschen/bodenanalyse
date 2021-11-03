@@ -1,23 +1,23 @@
 class CropModel {
   final String id;
-  final bool favorite;
+  final String type;
 
   CropModel({
     required this.id,
-    required this.favorite,
+    required this.type,
   });
 
   factory CropModel.fromJson(Map<String, dynamic> json) {
     return CropModel(
       id: json["id"] as String,
-      favorite: json["favorite"] as bool,
+      type: json["type"] as String,
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
       "id": id,
-      "favorite": favorite,
+      "type": type,
     };
   }
 }
