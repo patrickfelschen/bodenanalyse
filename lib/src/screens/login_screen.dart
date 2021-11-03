@@ -33,10 +33,10 @@ class _LoginScreenState extends State<LoginScreen> {
               fit: BoxFit.cover,
             ),),
 
-          child: Column(
+          child: ListView(
             children: [
               Padding(
-                padding: EdgeInsets.only(top: 90),
+                padding: EdgeInsets.only(top: 0),
                 child:
                 Image.asset("assets/images/logoStart.png"),
                 ),
@@ -44,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
               Padding(
                 padding: EdgeInsets.only(
-                    left: 40,right:40,top:40
+                    left: 40,right:40,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,15 +77,15 @@ class _LoginScreenState extends State<LoginScreen> {
                         fillColor: Colors.white70 ,filled: true,
                       ),
                     ),
-                    SizedBox(height: 30,)
+                    SizedBox(height: 50,)
                   ],
                 ),
               ),
 
               Padding(
-                padding: EdgeInsets.only(bottom:40),
+                padding: EdgeInsets.only(left: 90,right: 90,bottom: 20),
                 child: MaterialButton(
-                  minWidth: 200,
+                  minWidth: 50,
                   height:60,
                   onPressed: () {
                     //todo: hier checken, ob Anmeldedaten stimmen, wenn ja -> Navigator.push
