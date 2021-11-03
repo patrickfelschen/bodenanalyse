@@ -6,6 +6,7 @@ import 'package:bodenanalyse/src/screens/global_settings_screen.dart';
 import 'package:bodenanalyse/src/screens/home_screen.dart';
 import 'package:bodenanalyse/src/screens/login_screen.dart';
 import 'package:bodenanalyse/src/screens/new_field_screen.dart';
+import 'package:bodenanalyse/src/screens/profile_screen.dart';
 import 'package:bodenanalyse/src/screens/registration_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -16,6 +17,24 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const _primaryColor = Color(0xFF8BA94D);
+    const _secondaryColor = Color(0xFF773117);
+    const _scaffoldColor = Color(0xFFF9F7F0);
+    const _menuColor = Color(0xFFC4C4C4);
+    const _textColor = Color(0xFF141414);
+
+    Color getTrackColor(Set<MaterialState> states) {
+      const Set<MaterialState> interactiveStates = <MaterialState>{
+        MaterialState.selected,
+        MaterialState.hovered,
+        MaterialState.focused,
+      };
+      if (states.any(interactiveStates.contains)) {
+        return _secondaryColor;
+      }
+      return Colors.grey;
+    }
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       restorationScopeId: 'app',
@@ -30,19 +49,28 @@ class App extends StatelessWidget {
       ],
       onGenerateTitle: (BuildContext context) =>
           AppLocalizations.of(context)!.appTitle,
-      //themeMode: ThemeMode.light,
+      themeMode: ThemeMode.light,
       theme: ThemeData(
-        fontFamily: "Poppins",
         colorScheme: ColorScheme.fromSwatch().copyWith(
-            //brightness: Brightness.light,
-            //primary: const Color(0xFF8BA94D),
-            //background: const Color(0xFFF9F7F0),
-            //secondary: const Color(0xFF773117),
-            ),
+          brightness: Brightness.light,
+          primary: _primaryColor,
+          secondary: _secondaryColor,
+          // Menühintergrund
+          background: _menuColor,
+        ),
+        appBarTheme: const AppBarTheme(centerTitle: true),
+        fontFamily: "Poppins",
+        primaryTextTheme: const TextTheme()
+            .apply(bodyColor: _textColor, displayColor: _textColor),
+        primaryColor: _primaryColor,
+        scaffoldBackgroundColor: _scaffoldColor,
+        switchTheme: SwitchThemeData(
+          trackColor: MaterialStateProperty.resolveWith(getTrackColor),
+          thumbColor: MaterialStateProperty.all(Colors.white),
+        ),
       ),
-      darkTheme: ThemeData.dark(),
       // Debug Option
-      initialRoute: LoginScreen.routeName,
+      // initialRoute: ProfileScreen.routeName,
       onGenerateRoute: (RouteSettings routeSettings) {
         return MaterialPageRoute<void>(
           settings: routeSettings,
@@ -66,6 +94,8 @@ class App extends StatelessWidget {
                 return RegistrationScreen();
               case CultureFavoritesScreen.routeName:
                 return CultureFavoritesScreen();
+              case ProfileScreen.routeName:
+                return ProfileScreen();
               default:
                 return HomeScreen();
             }

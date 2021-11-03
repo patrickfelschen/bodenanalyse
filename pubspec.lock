@@ -203,6 +203,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.2.4"
+  progress_stepper:
+    dependency: "direct main"
+    description:
+      name: progress_stepper
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.1"
   provider:
     dependency: "direct main"
     description:
