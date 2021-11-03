@@ -22,7 +22,12 @@ class _AnalysisDetailsScreenState extends State<AnalysisDetailsScreen> {
           padding: EdgeInsets.all(10),
           child: Column(
             children: <Widget>[
-              Text('Name der Kultur'),
+              Text('Name der Kultur',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24.0,
+                ),
+              ),
               Expanded(
                 child: ListView(
                   children: <Widget>[
@@ -97,7 +102,7 @@ class _AnalysisDetailsScreenState extends State<AnalysisDetailsScreen> {
                     minimumSize: Size(400, 40),
                     primary: Colors.white,
                   ),
-                  child: Text('Fotos anzeigen', style: TextStyle(color: Colors.black),),
+                  child: Text('Fotos anzeigen', style: TextStyle(color: Theme.of(context).colorScheme.onSurface),),
                 ),
               ),
               Padding(

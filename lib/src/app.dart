@@ -1,4 +1,5 @@
 import 'package:bodenanalyse/src/providers/auth_provider.dart';
+import 'package:bodenanalyse/src/screens/analysis_details_screen.dart';
 import 'package:bodenanalyse/src/screens/analysis_start_screen.dart';
 import 'package:bodenanalyse/src/screens/culture_favorites_screen.dart';
 import 'package:bodenanalyse/src/screens/edit_field_screen.dart';
@@ -44,6 +45,8 @@ class App extends StatelessWidget {
         secondary: _secondaryColor,
         // Menühintergrund
         background: _menuColor,
+        // Textfarbe
+        onSurface: _textColor,
       ),
       appBarTheme: const AppBarTheme(
         centerTitle: true,
@@ -90,6 +93,8 @@ class App extends StatelessWidget {
               return CultureFavoritesScreen();
             case ProfileScreen.routeName:
               return ProfileScreen();
+            case AnalysisDetailsScreen.routeName:
+              return AnalysisDetailsScreen();
             default:
               return HomeScreen();
           }
@@ -118,8 +123,10 @@ class App extends StatelessWidget {
         ],
         themeMode: ThemeMode.light,
         theme: _theme,
+
         // Debug Option
-        initialRoute: RegistrationScreen.routeName,
+        initialRoute: AnalysisDetailsScreen.routeName,
+
         onGenerateRoute: _onGenerateRoute,
       ),
     );
