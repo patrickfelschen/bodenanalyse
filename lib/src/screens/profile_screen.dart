@@ -28,8 +28,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
               // TODO: change to image
               width: 200.0,
               height: 200.0,
-              decoration: const BoxDecoration(
-                color: Colors.lightGreen,
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.primary,
                 shape: BoxShape.circle,
               ),
             ),
