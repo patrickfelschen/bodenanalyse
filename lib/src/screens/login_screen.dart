@@ -64,14 +64,18 @@ class _LoginScreenState extends State<LoginScreen> {
             fit: BoxFit.cover,
           ),
         ),
-        child: Column(
+        child: ListView(
           children: [
             Padding(
-              padding: EdgeInsets.only(top: 90),
+              padding: EdgeInsets.symmetric(horizontal: 50),
               child: Image.asset("assets/images/logoStart.png"),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 40, right: 40, top: 40),
+              padding: EdgeInsets.only(
+                left: 60,
+                right: 60,
+                top: 30,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -129,10 +133,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: MaterialButton(
                 minWidth: 200,
                 height: 60,
-                onPressed: () {
-                  //todo: hier checken, ob Anmeldedaten stimmen, wenn ja -> Navigator.push
-                  Navigator.pushNamed(context, HomeScreen.routeName);
-                },
+                onPressed: () => signIn(),
                 color: Theme.of(context).colorScheme.primary,
                 child: Text(
                   "LOGIN",
@@ -147,7 +148,9 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             Flexible(
               child: MaterialButton(
-                onPressed: () => signIn(),
+                onPressed: () {
+                  Navigator.pushNamed(context, RegistrationScreen.routeName);
+                },
                 child: Text(
                   "REGISTRIEREN",
                   style: TextStyle(

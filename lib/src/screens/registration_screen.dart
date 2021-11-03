@@ -75,14 +75,16 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             fit: BoxFit.cover,
           ),
         ),
-        child: Column(
+        child: ListView(
           children: [
             Padding(
-              padding: EdgeInsets.only(top: 60),
+              padding: EdgeInsets.symmetric(horizontal: 50),
               child: Image.asset("assets/images/logoStart.png"),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 40, right: 40, top: 30),
+              padding: EdgeInsets.only(
+              left: 60,right:60,
+            ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -158,7 +160,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 ],
               ),
             ),
-            Flexible(
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 100),
               child: MaterialButton(
                 minWidth: 200,
                 height: 60,
@@ -183,7 +186,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                //color: Color(0xFF8BA94D),
                 child: Text(
                   "zurück",
                   style: TextStyle(

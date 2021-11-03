@@ -1,4 +1,5 @@
 import 'package:bodenanalyse/src/providers/auth_provider.dart';
+import 'package:bodenanalyse/src/screens/analysis_details_screen.dart';
 import 'package:bodenanalyse/src/screens/analysis_start_screen.dart';
 import 'package:bodenanalyse/src/screens/culture_favorites_screen.dart';
 import 'package:bodenanalyse/src/screens/edit_field_screen.dart';
@@ -45,6 +46,8 @@ class App extends StatelessWidget {
         secondary: _secondaryColor,
         // Menühintergrund
         background: _menuColor,
+        // Textfarbe
+        onSurface: _textColor,
       ),
       appBarTheme: const AppBarTheme(
         centerTitle: true,
@@ -74,27 +77,27 @@ class App extends StatelessWidget {
             case SplashScreen.routeName:
               return const SplashScreen();
             case HomeScreen.routeName:
-              return const HomeScreen();
+              return HomeScreen();
             case FieldDetailsScreen.routeName:
-              return const FieldDetailsScreen();
+              return FieldDetailsScreen();
             case AnalysisStartScreen.routeName:
-              return const AnalysisStartScreen();
+              return AnalysisStartScreen();
             case EditFieldScreen.routeName:
-              return const EditFieldScreen();
+              return EditFieldScreen();
             case GlobalSettingsScreen.routeName:
-              return const GlobalSettingsScreen();
+              return GlobalSettingsScreen();
             case LoginScreen.routeName:
-              return const LoginScreen();
+              return LoginScreen();
             case NewFieldScreen.routeName:
-              return const NewFieldScreen();
+              return NewFieldScreen();
             case RegistrationScreen.routeName:
-              return const RegistrationScreen();
+              return RegistrationScreen();
             case CultureFavoritesScreen.routeName:
-              return const CultureFavoritesScreen();
+              return CultureFavoritesScreen();
             case ProfileScreen.routeName:
-              return const ProfileScreen();
+              return ProfileScreen();
             default:
-              return const HomeScreen();
+              return HomeScreen();
           }
         },
       );
@@ -122,7 +125,7 @@ class App extends StatelessWidget {
         themeMode: ThemeMode.light,
         theme: _theme,
         // Debug Option
-        //initialRoute: RegistrationScreen.routeName,
+        // initialRoute: RegistrationScreen.routeName,
         onGenerateRoute: _onGenerateRoute,
       ),
     );
