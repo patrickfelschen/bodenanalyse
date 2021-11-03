@@ -40,6 +40,8 @@ flutter:
     - assets/images/logoStart.png
     - assets/images/step1_bad_example.png
     - assets/images/step1_good_example.png
+    - assets/images/step2_bad_example.png
+    - assets/images/step2_good_example.png
 
 
   fonts:

@@ -12,7 +12,7 @@ class AnalysisStartScreen extends StatefulWidget {
 }
 
 class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
-  var testList = List.empty();
+  List<Widget> stackChildren = List.empty();
   int _steps = 6;
   int _counter = 1;
   List<int> widgetIds = [0, 1];
@@ -34,23 +34,17 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
     });
   }
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
-
   void _swapStackChildren() {
-    final temp = _stackChildren[0];
+    final temp = stackChildren[0];
     setState(() {
-      _stackChildren[0] = _stackChildren[1];
-      _stackChildren[1] = temp;
+      stackChildren[0] = stackChildren[1];
+      stackChildren[1] = temp;
     });
   }
 
-  List<Widget> _stackChildren = <Widget>[
+  final List<Widget> _stackChildrenStep1 = <Widget>[
     AnalysisCard(
-      analysisImage: AssetImage("assets/images/start.png"),
+      analysisImage: const AssetImage("assets/images/step1_good_example.png"),
       badExample: false,
       text1: 'Nach Saat ungleche Strohverteilung',
       text2: 'Erosion',
@@ -59,9 +53,9 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
       text5: 'Grobklutig bei Saat',
     ),
     AnalysisCard(
-      analysisImage: AssetImage("assets/images/start.png"),
+      analysisImage: const AssetImage("assets/images/step1_bad_example.png"),
       badExample: true,
-      text1: 'Nach Saat ungleche Strohverteilung',
+      text1: 'Verschlämmung',
       text2: 'Erosion',
       text3: 'Verkrustung',
       text4: 'Verknetung',
@@ -69,8 +63,134 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
     )
   ];
 
+  final List<Widget> _stackChildrenStep2 = <Widget>[
+    AnalysisCard(
+      analysisImage: const AssetImage("assets/images/step2_good_example.png"),
+      badExample: false,
+      text1: 'Durchgängig über alle Horizonte',
+      text2: 'Gleichmäßige Wurzelverteilung',
+      text3: 'Intensive Durchwurzelung',
+      text4: '',
+      text5: '',
+    ),
+    AnalysisCard(
+      analysisImage: AssetImage("assets/images/step2_bad_example.png"),
+      badExample: true,
+      text1: 'Geknickte Wurzeln',
+      text2: 'Wurzelfilz auf verdichteten Schichten',
+      text3: '',
+      text4: '',
+      text5: '',
+    )
+  ];
+
+  final List<Widget> _stackChildrenStep3 = <Widget>[
+    AnalysisCard(
+      analysisImage: const AssetImage("assets/images/step2_good_example.png"),
+      badExample: false,
+      text1: 'RW-Lösung an Oberfläche',
+      text2: 'Viele Regenwurmgänge',
+      text3: 'Verzahnung von Ober-/Unterboden',
+      text4: '',
+      text5: '',
+    ),
+    AnalysisCard(
+      analysisImage: AssetImage("assets/images/step2_bad_example.png"),
+      badExample: true,
+      text1: 'Keine offenen Poren auf der Oberfläche',
+      text2: 'In Krume wenig vertikale RW-Gänge',
+      text3: 'Keine Verbindung Ober-/Unterboden',
+      text4: '',
+      text5: '',
+    )
+  ];
+
+  final List<Widget> _stackChildrenStep4 = <Widget>[
+    AnalysisCard(
+      analysisImage: const AssetImage("assets/images/step2_good_example.png"),
+      badExample: false,
+      text1: 'Porös, locker',
+      text2: 'Fein aggregiert',
+      text3: 'Zerfall zwischen Fingern',
+      text4: 'Messereinstich leicht möglich',
+      text5: '',
+    ),
+    AnalysisCard(
+      analysisImage: AssetImage("assets/images/step2_bad_example.png"),
+      badExample: true,
+      text1: 'Stark verfestigt, scharfkantig',
+      text2: 'Wurzelfilz an Aggregatoberfläche',
+      text3: 'Messer schwer einzustechen',
+      text4: '',
+      text5: '',
+    )
+  ];
+
+  final List<Widget> _stackChildrenStep5 = <Widget>[
+    AnalysisCard(
+      analysisImage: const AssetImage("assets/images/step2_good_example.png"),
+      badExample: false,
+      text1: 'Nach Saat gleichmäßig an Oberfläche verteilt',
+      text2: 'Gleichmäßig in Krume eingearbeitet',
+      text3: 'Vorfruchtreste in Krume gut verottet',
+      text4: 'Gleichmäßige Wurzelentwicklung',
+      text5: '',
+    ),
+    AnalysisCard(
+      analysisImage: AssetImage("assets/images/step2_bad_example.png"),
+      badExample: true,
+      text1: 'Nach Saat ungleiche Strohverteilung',
+      text2: 'Reststoffe konzentriert an Oberfläche',
+      text3: 'Unverrottete Reststoffe vom Vorjahr',
+      text4: 'Wurzelstau auf Strohpolstern',
+      text5: '',
+    )
+  ];
+
+  final List<Widget> _stackChildrenStep6 = <Widget>[
+    AnalysisCard(
+      analysisImage: const AssetImage("assets/images/step2_good_example.png"),
+      badExample: false,
+      text1: 'Angenehmer, erdiger Geruch',
+      text2: 'Gleichmäßige Farbe',
+      text3: '',
+      text4: '',
+      text5: '',
+    ),
+    AnalysisCard(
+      analysisImage: AssetImage("assets/images/step2_bad_example.png"),
+      badExample: true,
+      text1: 'Übler, fauliger Geruch',
+      text2: 'Blau/grau gefärbte Bereiche',
+      text3: 'Rostflecken',
+      text4: '',
+      text5: '',
+    )
+  ];
+
   @override
   Widget build(BuildContext context) {
+    switch(_counter) {
+      case 1:
+        stackChildren = _stackChildrenStep1;
+        break;
+      case 2:
+        stackChildren = _stackChildrenStep2;
+        break;
+      case 3:
+        stackChildren = _stackChildrenStep3;
+        break;
+      case 4:
+        stackChildren = _stackChildrenStep4;
+        break;
+      case 5:
+        stackChildren = _stackChildrenStep5;
+        break;
+      case 6:
+        stackChildren = _stackChildrenStep6;
+        break;
+    }
+
     return SafeArea(
         child: Scaffold(
       body: Column(children: [
@@ -87,7 +207,7 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
         ),
         Stack(
-          children: _stackChildren,
+          children: stackChildren,
         ),
         IconButton(
             onPressed: _swapStackChildren,
@@ -111,7 +231,7 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
       alignment: MainAxisAlignment.spaceEvenly,
       children: [
         ElevatedButton(
-          onPressed: null,
+          onPressed: _incrementCounter,
           child: Text(
             '-2',
             style: TextStyle(color: textColor, fontSize: fontSize),
@@ -121,7 +241,7 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
                   Theme.of(context).colorScheme.secondary)),
         ),
         ElevatedButton(
-          onPressed: null,
+          onPressed: _incrementCounter,
           child: Text(
             '-1',
             style: TextStyle(color: textColor, fontSize: fontSize),
@@ -132,7 +252,7 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
           ),
         ),
         ElevatedButton(
-          onPressed: () {},
+          onPressed: _incrementCounter,
           child: Text(
             '0',
             style: TextStyle(color: Colors.black, fontSize: fontSize),
@@ -142,7 +262,7 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
                   Colors.white)),
         ),
         ElevatedButton(
-          onPressed: null,
+          onPressed: _incrementCounter,
           child: Text(
             '+1',
             style: TextStyle(color: textColor, fontSize: fontSize),
@@ -152,7 +272,7 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
                   Theme.of(context).colorScheme.primary.withOpacity(0.5))),
         ),
         ElevatedButton(
-          onPressed: null,
+          onPressed: _incrementCounter,
           child: Text(
             '+2',
             style: TextStyle(color: textColor, fontSize: fontSize),
