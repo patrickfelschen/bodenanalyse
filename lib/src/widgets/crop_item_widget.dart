@@ -1,5 +1,6 @@
 import 'package:bodenanalyse/src/models/crop_model.dart';
 import 'package:bodenanalyse/src/screens/analysis_start_screen.dart';
+import 'package:bodenanalyse/src/screens/tutorial_decision_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,7 @@ class _CropItemWidgetState extends State<CropItemWidget> {
     return ListTile(
       title: Text(widget.cropModel.name),
       onTap: () {
-        Navigator.pushNamed(context, AnalysisStartScreen.routeName);
+        Navigator.pushNamed(context, TutorialDecisionScreen.routeName);
       },
       trailing: GestureDetector(
         child: Icon(selected ? Icons.star : Icons.star_border),

@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 class AnalysisProvider with ChangeNotifier {
   late SharedPreferencesService _sharedPreferencesService;
   late List<PropertyModel> _propertyList;
+  late bool _tutorialSteps;
 
   AnalysisProvider() {
     _sharedPreferencesService = SharedPreferencesService();
     _propertyList = List.empty(growable: true);
+    _tutorialSteps = false;
   }
 
   void addProperty(PropertyModel model) {
@@ -22,5 +24,9 @@ class AnalysisProvider with ChangeNotifier {
 
   void printPropertyList() {
     print(_propertyList);
+  }
+
+  void setTutorialSteps(bool value) {
+    _tutorialSteps = value;
   }
 }
