@@ -1,23 +1,23 @@
 class SoilModel {
   final int id;
-  final String type;
+  final String name;
 
   SoilModel({
     required this.id,
-    required this.type,
+    required this.name,
   });
 
   factory SoilModel.fromJson(Map<String, dynamic> json) {
     return SoilModel(
       id: json["id"] as int,
-      type: json["type"] as String,
+      name: json["name"] as String,
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
       "id": id,
-      "type": type,
+      "name": name,
     };
   }
 }

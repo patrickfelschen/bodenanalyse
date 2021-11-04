@@ -25,7 +25,6 @@ class _SampleListWidgetState extends State<SampleListWidget> {
             datetime: items[index].datetime,
             lng: items[index].lng,
             lat: items[index].lat,
-            soilModel: items[index].soilModel,
             cropModel: items[index].cropModel,
             properties: items[index].properties,
           ));
