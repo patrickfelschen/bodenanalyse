@@ -14,6 +14,7 @@ import 'package:bodenanalyse/src/screens/new_field_screen.dart';
 import 'package:bodenanalyse/src/screens/profile_screen.dart';
 import 'package:bodenanalyse/src/screens/registration_screen.dart';
 import 'package:bodenanalyse/src/screens/splash_screen.dart';
+import 'package:bodenanalyse/src/screens/tutorial_decision_screen.dart';
 import 'package:bodenanalyse/src/widgets/tutorial_material_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -102,6 +103,8 @@ class App extends StatelessWidget {
               return ProfileScreen();
             case CropListScreen.routeName:
               return CropListScreen();
+            case TutorialDecisionScreen.routeName:
+              return TutorialDecisionScreen();
             default:
               return HomeScreen();
           }
