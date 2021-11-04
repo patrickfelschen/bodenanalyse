@@ -41,7 +41,7 @@ class AnalysisCard extends StatelessWidget {
         alignment: cardAlignment,
         child: Container(
           margin: cardMargin,
-          width: 250,
+          width: MediaQuery.of(context).size.width/1.55,
           decoration: BoxDecoration(
               border: Border.all(width: 4, color: cardColor),
               borderRadius: BorderRadius.all(Radius.circular(4)),
