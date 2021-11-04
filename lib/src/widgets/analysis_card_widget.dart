@@ -45,14 +45,7 @@ class AnalysisCard extends StatelessWidget {
           decoration: BoxDecoration(
               border: Border.all(width: 4, color: cardColor),
               borderRadius: BorderRadius.all(Radius.circular(4)),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.5),
-                  spreadRadius: 5,
-                  blurRadius: 7,
-                  offset: Offset(0, 3)
-                )
-              ]
+
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,

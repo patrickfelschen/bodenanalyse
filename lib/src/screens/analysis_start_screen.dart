@@ -86,7 +86,7 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
 
   final List<Widget> _stackChildrenStep3 = <Widget>[
     AnalysisCard(
-      analysisImage: const AssetImage("assets/images/step2_good_example.png"),
+      analysisImage: const AssetImage("assets/images/step3_good_example.png"),
       badExample: false,
       text1: 'RW-Lösung an Oberfläche',
       text2: 'Viele Regenwurmgänge',
@@ -95,7 +95,7 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
       text5: '',
     ),
     AnalysisCard(
-      analysisImage: AssetImage("assets/images/step2_bad_example.png"),
+      analysisImage: AssetImage("assets/images/step3_bad_example.png"),
       badExample: true,
       text1: 'Keine offenen Poren auf der Oberfläche',
       text2: 'In Krume wenig vertikale RW-Gänge',
@@ -107,7 +107,7 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
 
   final List<Widget> _stackChildrenStep4 = <Widget>[
     AnalysisCard(
-      analysisImage: const AssetImage("assets/images/step2_good_example.png"),
+      analysisImage: const AssetImage("assets/images/step4_good_example.png"),
       badExample: false,
       text1: 'Porös, locker',
       text2: 'Fein aggregiert',
@@ -116,7 +116,7 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
       text5: '',
     ),
     AnalysisCard(
-      analysisImage: AssetImage("assets/images/step2_bad_example.png"),
+      analysisImage: AssetImage("assets/images/step4_bad_example.png"),
       badExample: true,
       text1: 'Stark verfestigt, scharfkantig',
       text2: 'Wurzelfilz an Aggregatoberfläche',
@@ -128,7 +128,7 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
 
   final List<Widget> _stackChildrenStep5 = <Widget>[
     AnalysisCard(
-      analysisImage: const AssetImage("assets/images/step2_good_example.png"),
+      analysisImage: const AssetImage("assets/images/step5_good_example.jpg"),
       badExample: false,
       text1: 'Nach Saat gleichmäßig an Oberfläche verteilt',
       text2: 'Gleichmäßig in Krume eingearbeitet',
@@ -137,7 +137,7 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
       text5: '',
     ),
     AnalysisCard(
-      analysisImage: AssetImage("assets/images/step2_bad_example.png"),
+      analysisImage: AssetImage("assets/images/step5_bad_example.png"),
       badExample: true,
       text1: 'Nach Saat ungleiche Strohverteilung',
       text2: 'Reststoffe konzentriert an Oberfläche',
@@ -149,7 +149,7 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
 
   final List<Widget> _stackChildrenStep6 = <Widget>[
     AnalysisCard(
-      analysisImage: const AssetImage("assets/images/step2_good_example.png"),
+      analysisImage: const AssetImage("assets/images/step6_good_example.png"),
       badExample: false,
       text1: 'Angenehmer, erdiger Geruch',
       text2: 'Gleichmäßige Farbe',
@@ -158,7 +158,7 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
       text5: '',
     ),
     AnalysisCard(
-      analysisImage: AssetImage("assets/images/step2_bad_example.png"),
+      analysisImage: AssetImage("assets/images/step6_bad_example.png"),
       badExample: true,
       text1: 'Übler, fauliger Geruch',
       text2: 'Blau/grau gefärbte Bereiche',

@@ -42,6 +42,14 @@ flutter:
     - assets/images/step1_good_example.png
     - assets/images/step2_bad_example.png
     - assets/images/step2_good_example.png
+    - assets/images/step3_bad_example.png
+    - assets/images/step3_good_example.png
+    - assets/images/step4_bad_example.png
+    - assets/images/step4_good_example.png
+    - assets/images/step5_bad_example.png
+    - assets/images/step5_good_example.jpg
+    - assets/images/step6_bad_example.png
+    - assets/images/step6_good_example.png
 
 
   fonts:
