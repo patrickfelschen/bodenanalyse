@@ -1,5 +1,7 @@
+import 'package:bodenanalyse/src/providers/analysis_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AnalysisDetailsScreen extends StatefulWidget {
   const AnalysisDetailsScreen({Key? key}) : super(key: key);
@@ -16,7 +18,12 @@ class _AnalysisDetailsScreenState extends State<AnalysisDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final AnalysisProvider _analysisProvider = Provider.of<AnalysisProvider>(context);
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Auswertung'),
+
+      ),
       body: Center(
         child: Padding(
           padding: EdgeInsets.all(10),

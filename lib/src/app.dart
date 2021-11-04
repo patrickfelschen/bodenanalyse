@@ -2,6 +2,7 @@ import 'package:bodenanalyse/src/providers/analysis_provider.dart';
 import 'package:bodenanalyse/src/providers/auth_provider.dart';
 import 'package:bodenanalyse/src/providers/crop_provider.dart';
 import 'package:bodenanalyse/src/providers/field_provider.dart';
+import 'package:bodenanalyse/src/screens/analysis_details_screen.dart';
 import 'package:bodenanalyse/src/screens/analysis_start_screen.dart';
 import 'package:bodenanalyse/src/screens/crop_list_screen.dart';
 import 'package:bodenanalyse/src/screens/culture_favorites_screen.dart';
@@ -15,7 +16,6 @@ import 'package:bodenanalyse/src/screens/profile_screen.dart';
 import 'package:bodenanalyse/src/screens/registration_screen.dart';
 import 'package:bodenanalyse/src/screens/splash_screen.dart';
 import 'package:bodenanalyse/src/screens/tutorial_decision_screen.dart';
-import 'package:bodenanalyse/src/widgets/tutorial_material_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -105,6 +105,8 @@ class App extends StatelessWidget {
               return CropListScreen();
             case TutorialDecisionScreen.routeName:
               return TutorialDecisionScreen();
+            case AnalysisDetailsScreen.routeName:
+              return AnalysisDetailsScreen();
             default:
               return HomeScreen();
           }

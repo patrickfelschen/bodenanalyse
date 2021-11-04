@@ -2,6 +2,7 @@ import 'dart:collection';
 
 import 'package:bodenanalyse/src/models/property_model.dart';
 import 'package:bodenanalyse/src/providers/analysis_provider.dart';
+import 'package:bodenanalyse/src/screens/analysis_details_screen.dart';
 import 'package:bodenanalyse/src/screens/home_screen.dart';
 import 'package:bodenanalyse/src/widgets/analysis_card_widget.dart';
 import 'package:bodenanalyse/src/widgets/tutorial_first_widget.dart';
@@ -36,7 +37,7 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
 
   void _incrementIndex() {
     setState(() {
-      if (index < 6) {
+      if (index < 7) {
         index++;
       }
     });
@@ -257,15 +258,15 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Schritt $index'),
+        title: Text('Schritt $_counter'),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () => {
-            if (index == 1)
+            if (_counter == 1)
               {showCancelDialog(context, _analysisProvider)}
             else
               {
-                _decrementCounter, _decrementIndex()
+                _decrementCounter()
               }
           },
         ),
@@ -283,10 +284,10 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
                   width: MediaQuery.of(context).size.width,
                   height: 10,
                   stepCount: _steps,
-                  currentStep: index,
+                  currentStep: _counter,
                   progressColor: Color(0xFF8BA94D),
                 ))),
-        stepTextList.entries.elementAt(index - 1).value,
+        stepTextList.entries.elementAt(_counter - 1).value,
         Stack(
           children: stackChildren,
         ),
@@ -301,7 +302,7 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             RatingButtonBar(
-                context, stepTextList.entries.elementAt((index - 1)).key)
+                context, stepTextList.entries.elementAt((_counter - 1)).key)
           ],
         )
       ]),
@@ -349,9 +350,15 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
       children: [
         ElevatedButton(
           onPressed: () {
-            savePropertyToProvider(-2, criteria);
-            _incrementCounter();
-            _incrementIndex();
+            if(_counter < 6) {
+              savePropertyToProvider(-2, criteria);
+              _incrementCounter();
+              _incrementIndex();
+            }else {
+              print('test');
+              Navigator.pushNamed(context, AnalysisDetailsScreen.routeName);
+            }
+
           },
           child: Text(
             '-2',
