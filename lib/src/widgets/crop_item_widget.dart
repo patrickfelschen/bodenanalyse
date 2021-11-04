@@ -25,7 +25,7 @@ class _CropItemWidgetState extends State<CropItemWidget> {
       title: Text(widget.cropModel.name),
       onTap: () {
         Navigator.pushNamed(context, TutorialDecisionScreen.routeName);
-        _analysisProvider.setCropName(widget.cropModel.name);
+        _analysisProvider.setCropModel(widget.cropModel);
       },
       trailing: GestureDetector(
         child: Icon(selected ? Icons.star : Icons.star_border),

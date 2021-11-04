@@ -1,5 +1,7 @@
 import 'package:bodenanalyse/src/models/property_model.dart';
+import 'package:bodenanalyse/src/models/sample_model.dart';
 import 'package:bodenanalyse/src/providers/analysis_provider.dart';
+import 'package:bodenanalyse/src/screens/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -17,10 +19,11 @@ class _AnalysisDetailsScreenState extends State<AnalysisDetailsScreen> {
   // TODO: import actual data
   final String _punkte = '+1';
 
+
   @override
   Widget build(BuildContext context) {
     final AnalysisProvider _analysisProvider =
-        Provider.of<AnalysisProvider>(context);
+    Provider.of<AnalysisProvider>(context);
     final List<PropertyModel> _properties = _analysisProvider.getPropertyList();
 
     int overallRating() {
@@ -29,6 +32,12 @@ class _AnalysisDetailsScreenState extends State<AnalysisDetailsScreen> {
         rating += element.rating;
       });
       return rating;
+    }
+
+    void saveSample() {
+      _analysisProvider.setLng(8.02236695003242);
+      _analysisProvider.setLat(52.285056295554796);
+      _analysisProvider.setDateTime(DateTime.now());
     }
 
     return Scaffold(
@@ -41,6 +50,12 @@ class _AnalysisDetailsScreenState extends State<AnalysisDetailsScreen> {
             _analysisProvider.getPropertyList().removeLast();
           },
         ),
+        actions: [
+          IconButton(icon: Icon(Icons.save), onPressed: () {
+            saveSample();
+            Navigator.pushNamed(context, HomeScreen.routeName);
+          })
+        ],
       ),
       body: Center(
         child: Padding(
@@ -48,7 +63,9 @@ class _AnalysisDetailsScreenState extends State<AnalysisDetailsScreen> {
           child: Column(
             children: <Widget>[
               Text(
-                _analysisProvider.getCropName(),
+                _analysisProvider
+                    .getCropModel()
+                    .name,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 24.0,
@@ -61,7 +78,10 @@ class _AnalysisDetailsScreenState extends State<AnalysisDetailsScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         const Text('Struktur der Oberfläche:'),
-                        Text(_properties.elementAt(0).rating.toString()),
+                        Text(_properties
+                            .elementAt(0)
+                            .rating
+                            .toString()),
                       ],
                     ),
                     const Divider(),
@@ -69,7 +89,10 @@ class _AnalysisDetailsScreenState extends State<AnalysisDetailsScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         const Text('Durchwurzelung des Bodens:'),
-                        Text(_properties.elementAt(1).rating.toString()),
+                        Text(_properties
+                            .elementAt(1)
+                            .rating
+                            .toString()),
                       ],
                     ),
                     const Divider(),
@@ -77,7 +100,10 @@ class _AnalysisDetailsScreenState extends State<AnalysisDetailsScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         const Text('Makroporen / Bioporen:'),
-                        Text(_properties.elementAt(2).rating.toString()),
+                        Text(_properties
+                            .elementAt(2)
+                            .rating
+                            .toString()),
                       ],
                     ),
                     const Divider(),
@@ -85,7 +111,10 @@ class _AnalysisDetailsScreenState extends State<AnalysisDetailsScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         const Text('Gefüge und Verfestigungen:'),
-                        Text(_properties.elementAt(3).rating.toString()),
+                        Text(_properties
+                            .elementAt(3)
+                            .rating
+                            .toString()),
                       ],
                     ),
                     const Divider(),
@@ -93,7 +122,10 @@ class _AnalysisDetailsScreenState extends State<AnalysisDetailsScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         const Text('Organische Reststoffe:'),
-                        Text(_properties.elementAt(4).rating.toString()),
+                        Text(_properties
+                            .elementAt(4)
+                            .rating
+                            .toString()),
                       ],
                     ),
                     const Divider(),
@@ -101,7 +133,10 @@ class _AnalysisDetailsScreenState extends State<AnalysisDetailsScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         const Text('Farbe und Geruch:'),
-                        Text(_properties.elementAt(5).rating.toString()),
+                        Text(_properties
+                            .elementAt(5)
+                            .rating
+                            .toString()),
                       ],
                     ),
                     const Divider(),
@@ -110,12 +145,18 @@ class _AnalysisDetailsScreenState extends State<AnalysisDetailsScreen> {
                       children: <Widget>[
                         Text('Gesamtergebnis:',
                             style: TextStyle(
-                                color: Theme.of(context).colorScheme.primary,
+                                color: Theme
+                                    .of(context)
+                                    .colorScheme
+                                    .primary,
                                 fontWeight: FontWeight.bold)),
                         Text(
                           overallRating().toString(),
                           style: TextStyle(
-                              color: Theme.of(context).colorScheme.primary,
+                              color: Theme
+                                  .of(context)
+                                  .colorScheme
+                                  .primary,
                               fontWeight: FontWeight.bold),
                         ),
                       ],
@@ -136,7 +177,10 @@ class _AnalysisDetailsScreenState extends State<AnalysisDetailsScreen> {
                   child: Text(
                     'Fotos anzeigen',
                     style: TextStyle(
-                        color: Theme.of(context).colorScheme.onSurface),
+                        color: Theme
+                            .of(context)
+                            .colorScheme
+                            .onSurface),
                   ),
                 ),
               ),
@@ -148,7 +192,10 @@ class _AnalysisDetailsScreenState extends State<AnalysisDetailsScreen> {
                   },
                   style: ElevatedButton.styleFrom(
                     minimumSize: Size(400, 40),
-                    primary: Theme.of(context).colorScheme.secondary,
+                    primary: Theme
+                        .of(context)
+                        .colorScheme
+                        .secondary,
                   ),
                   child: Text('Bewertung löschen'),
                 ),

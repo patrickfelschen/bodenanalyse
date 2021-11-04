@@ -47,9 +47,4 @@ class SampleModel {
           .toList()
     };
   }
-
-  @override
-  String toString() {
-    return 'SampleModel{id: $id, datetime: $datetime, lat: $lat, lng: $lng, cropModel: $cropModel, properties: $properties}';
-  }
 }
