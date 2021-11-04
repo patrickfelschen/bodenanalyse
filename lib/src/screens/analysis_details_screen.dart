@@ -59,6 +59,7 @@ class _AnalysisDetailsScreenState extends State<AnalysisDetailsScreen> {
           IconButton(icon: Icon(Icons.save), onPressed: () async {
             await saveSample();
             await _fieldProvider.loadAllSamples();
+            _analysisProvider.clearProperties();
             Navigator.pushNamed(context, FieldDetailsScreen.routeName);
           })
         ],

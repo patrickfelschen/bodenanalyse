@@ -22,7 +22,7 @@ class _FieldDetailsScreenState extends State<FieldDetailsScreen> {
         title: Text("Felddetails"), //todo: Name und ArtOberboden in Titel
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
-          onPressed: () {Navigator.pushNamed(context, HomeScreen.routeName);},
+          onPressed: () {Navigator.pushReplacementNamed(context, HomeScreen.routeName);},
         ),
         actions: [
           MaterialButton(
