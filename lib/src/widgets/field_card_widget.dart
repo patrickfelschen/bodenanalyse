@@ -19,9 +19,7 @@ class FieldCard extends StatelessWidget {
     return Card(
         color: Theme.of(context).colorScheme.primary,
         child: ExpansionTile(
-          leading: Icon(
-            Icons.agriculture,
-            size: 48.0,
+          leading: Image(image: AssetImage("assets/images/feld_icon_12.png"),
           ),
           iconColor: Theme.of(context).colorScheme.onPrimary,
           collapsedIconColor: Theme.of(context).colorScheme.onPrimary,
