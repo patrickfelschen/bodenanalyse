@@ -45,6 +45,8 @@ class _TutorialDecisionScreenState extends State<TutorialDecisionScreen> {
                                 child: Text("Nein"),
                                 color: Colors.white,
                                 textColor: Colors.black,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10)),
                               )
                           ),
                           SizedBox(width: 30),
@@ -54,6 +56,8 @@ class _TutorialDecisionScreenState extends State<TutorialDecisionScreen> {
                                 child: Text("Ja"),
                                 color: Colors.white,
                                 textColor: Colors.black,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10)),
                               )
                           ),
                           SizedBox(width: 30),
