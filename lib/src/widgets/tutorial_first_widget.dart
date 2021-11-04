@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:bodenanalyse/src/screens/analysis_start_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -107,7 +108,7 @@ class _TutorialFirstWidgetState extends State<TutorialFirstWidget> {
                   minimumSize: MaterialStateProperty.all(Size(200, 40)),
                   backgroundColor: MaterialStateProperty.all(Colors.white),
                 ),
-                onPressed: () {},
+                onPressed: () {Navigator.pop(context);},
                 child: Text(
                   'Weiter',
                   style:

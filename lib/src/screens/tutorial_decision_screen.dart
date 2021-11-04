@@ -26,11 +26,17 @@ class _TutorialDecisionScreenState extends State<TutorialDecisionScreen> {
             },
           ),
         ),
-        backgroundColor: Theme.of(context).colorScheme.primary,
+        backgroundColor: Theme
+            .of(context)
+            .colorScheme
+            .primary,
         body: Container(
           child: Column(
             children: [
-              SizedBox(height: MediaQuery.of(context).size.height / 90),
+              SizedBox(height: MediaQuery
+                  .of(context)
+                  .size
+                  .height / 90),
               const Padding(
                 padding: EdgeInsets.only(top: 100),
                 child: Text(
@@ -48,32 +54,33 @@ class _TutorialDecisionScreenState extends State<TutorialDecisionScreen> {
                   SizedBox(width: 30),
                   Expanded(
                       child: MaterialButton(
-                    onPressed: () {
-                      Navigator.pushNamed(
-                          context, AnalysisStartScreen.routeName);
-                      _analysisProvider.setTutorialSteps(true);
-                    },
-                    //todo: Verknüpfung zu jeweiligem Dialog
-                    child: Text("Nein"),
-                    color: Colors.white,
-                    textColor: Colors.black,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                  )),
+                        onPressed: () {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text('Nicht implementiert'),
+                                duration: Duration(seconds: 3),));
+
+                          },
+                        //todo: Verknüpfung zu jeweiligem Dialog
+                        child: Text("Nein"),
+                        color: Colors.white,
+                        textColor: Colors.black,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                      )),
                   SizedBox(width: 30),
                   Expanded(
                       child: MaterialButton(
-                    onPressed: () {
-                      Navigator.pushNamed(
-                          context, AnalysisStartScreen.routeName);
-                      _analysisProvider.setTutorialSteps(false);
-                    },
-                    child: Text("Ja"),
-                    color: Colors.white,
-                    textColor: Colors.black,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                  )),
+                        onPressed: () {
+                          Navigator.pushNamed(
+                              context, AnalysisStartScreen.routeName);
+                          _analysisProvider.setTutorialSteps(false);
+                        },
+                        child: Text("Ja"),
+                        color: Colors.white,
+                        textColor: Colors.black,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                      )),
                   SizedBox(width: 30),
                 ],
               ),
@@ -97,7 +104,10 @@ class _TutorialDecisionScreenState extends State<TutorialDecisionScreen> {
                         ;
                       });
                     },
-                    activeTrackColor: Theme.of(context).colorScheme.secondary,
+                    activeTrackColor: Theme
+                        .of(context)
+                        .colorScheme
+                        .secondary,
                   ),
                 ],
               )

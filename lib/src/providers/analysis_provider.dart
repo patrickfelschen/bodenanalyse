@@ -29,4 +29,8 @@ class AnalysisProvider with ChangeNotifier {
   void setTutorialSteps(bool value) {
     _tutorialSteps = value;
   }
+
+  bool getTutorialStesp() {
+    return _tutorialSteps;
+  }
 }

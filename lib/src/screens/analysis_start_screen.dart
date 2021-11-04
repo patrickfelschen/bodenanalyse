@@ -4,6 +4,7 @@ import 'package:bodenanalyse/src/models/property_model.dart';
 import 'package:bodenanalyse/src/providers/analysis_provider.dart';
 import 'package:bodenanalyse/src/screens/home_screen.dart';
 import 'package:bodenanalyse/src/widgets/analysis_card_widget.dart';
+import 'package:bodenanalyse/src/widgets/tutorial_first_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:progress_stepper/progress_stepper.dart';
 import 'package:provider/provider.dart';
@@ -18,11 +19,12 @@ class AnalysisStartScreen extends StatefulWidget {
 }
 
 class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
-  List<Widget> stackChildren = List.empty();
+  List<Widget> stackChildren = List.empty(growable: true);
   int _steps = 6;
   int _counter = 1;
   List<int> widgetIds = [0, 1];
-  int index = 0;
+  int index = 1;
+  bool tutorialSteps = false;
 
   void _incrementCounter() {
     setState(() {
@@ -32,10 +34,26 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
     });
   }
 
+  void _incrementIndex() {
+    setState(() {
+      if (index < 6) {
+        index++;
+      }
+    });
+  }
+
   void _decrementCounter() {
     setState(() {
       if (_counter > 1) {
         _counter--;
+      }
+    });
+  }
+
+  void _decrementIndex() {
+    setState(() {
+      if (index > 1) {
+        index--;
       }
     });
   }
@@ -179,6 +197,8 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
     final AnalysisProvider _analysisProvider =
         Provider.of<AnalysisProvider>(context);
 
+    tutorialSteps = _analysisProvider.getTutorialStesp();
+
     final Map<String, Widget> stepTextList = {
       'Oberfläche': Text('Struktur der Oberfläche',
           style: TextStyle(
@@ -206,43 +226,53 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
               fontSize: MediaQuery.of(context).size.width / 26))
     };
 
-    switch (_counter) {
-      case 1:
-        stackChildren = _stackChildrenStep1;
-        break;
-      case 2:
-        stackChildren = _stackChildrenStep2;
-        break;
-      case 3:
-        stackChildren = _stackChildrenStep3;
-        break;
-      case 4:
-        stackChildren = _stackChildrenStep4;
-        break;
-      case 5:
-        stackChildren = _stackChildrenStep5;
-        break;
-      case 6:
-        stackChildren = _stackChildrenStep6;
-        break;
+    if (tutorialSteps) {
+      _steps = 11;
+      switch (_counter) {
+        case 1:
+          stackChildren.add(TutorialFirstWidget());
+      }
+    } else {
+      switch (_counter) {
+        case 1:
+          stackChildren = _stackChildrenStep1;
+          break;
+        case 2:
+          stackChildren = _stackChildrenStep2;
+          break;
+        case 3:
+          stackChildren = _stackChildrenStep3;
+          break;
+        case 4:
+          stackChildren = _stackChildrenStep4;
+          break;
+        case 5:
+          stackChildren = _stackChildrenStep5;
+          break;
+        case 6:
+          stackChildren = _stackChildrenStep6;
+          break;
+      }
     }
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Schritt $_counter'),
+        title: Text('Schritt $index'),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () => {
-            if (_counter == 1)
+            if (index == 1)
               {showCancelDialog(context, _analysisProvider)}
             else
-              {_decrementCounter()}
+              {
+                _decrementCounter, _decrementIndex()
+              }
           },
         ),
         actions: [
           IconButton(
               onPressed: () => {showCancelDialog(context, _analysisProvider)},
-              icon: Icon(Icons.cancel_outlined))
+              icon: Icon(Icons.clear))
         ],
       ),
       body: Column(children: [
@@ -253,10 +283,10 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
                   width: MediaQuery.of(context).size.width,
                   height: 10,
                   stepCount: _steps,
-                  currentStep: _counter,
+                  currentStep: index,
                   progressColor: Color(0xFF8BA94D),
                 ))),
-        stepTextList.entries.elementAt(_counter - 1).value,
+        stepTextList.entries.elementAt(index - 1).value,
         Stack(
           children: stackChildren,
         ),
@@ -271,14 +301,15 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             RatingButtonBar(
-                context, stepTextList.entries.elementAt((_counter - 1)).key)
+                context, stepTextList.entries.elementAt((index - 1)).key)
           ],
         )
       ]),
     );
   }
 
-  Future<dynamic> showCancelDialog(BuildContext context, AnalysisProvider analysisProvider) {
+  Future<dynamic> showCancelDialog(
+      BuildContext context, AnalysisProvider analysisProvider) {
     return showDialog(
         context: context,
         builder: (BuildContext context) => AlertDialog(
@@ -320,6 +351,7 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
           onPressed: () {
             savePropertyToProvider(-2, criteria);
             _incrementCounter();
+            _incrementIndex();
           },
           child: Text(
             '-2',
@@ -333,6 +365,7 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
           onPressed: () {
             savePropertyToProvider(-1, criteria);
             _incrementCounter();
+            _incrementIndex();
           },
           child: Text(
             '-1',
@@ -347,6 +380,7 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
           onPressed: () {
             savePropertyToProvider(0, criteria);
             _incrementCounter();
+            _incrementIndex();
           },
           child: Text(
             '0',
@@ -359,6 +393,7 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
           onPressed: () {
             savePropertyToProvider(1, criteria);
             _incrementCounter();
+            _incrementIndex();
           },
           child: Text(
             '+1',
@@ -372,6 +407,7 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
           onPressed: () {
             savePropertyToProvider(2, criteria);
             _incrementCounter();
+            _incrementIndex();
           },
           child: Text(
             '+2',
