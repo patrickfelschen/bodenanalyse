@@ -1,3 +1,4 @@
+import 'package:bodenanalyse/src/screens/home_screen.dart';
 import 'package:bodenanalyse/src/widgets/analysis_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:progress_stepper/progress_stepper.dart';
@@ -28,7 +29,7 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
 
   void _decrementCounter() {
     setState(() {
-      if (_counter > 0) {
+      if (_counter > 1) {
         _counter--;
       }
     });
@@ -170,7 +171,7 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
 
   @override
   Widget build(BuildContext context) {
-    switch(_counter) {
+    switch (_counter) {
       case 1:
         stackChildren = _stackChildrenStep1;
         break;
@@ -191,17 +192,32 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
         break;
     }
 
-    return SafeArea(
-        child: Scaffold(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Schritt $_counter'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: _decrementCounter,
+        ),
+        actions: [
+          IconButton(
+              onPressed: () => {
+                    showCancelDialog(context)
+                  },
+              icon: Icon(Icons.cancel_outlined))
+        ],
+      ),
       body: Column(children: [
         Container(
-            child: ProgressStepper(
-          width: MediaQuery.of(context).size.width,
-          height: 10,
-          stepCount: _steps,
-          currentStep: _counter,
-          progressColor: Color(0xFF8BA94D),
-        )),
+            child: Padding(
+                padding: const EdgeInsets.only(top: 4, left: 2, right: 2),
+                child: ProgressStepper(
+                  width: MediaQuery.of(context).size.width,
+                  height: 10,
+                  stepCount: _steps,
+                  currentStep: _counter,
+                  progressColor: Color(0xFF8BA94D),
+                ))),
         Text(
           'Struktur der Oberfläche',
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
@@ -221,7 +237,26 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
           children: [RatingButtonBar(context)],
         )
       ]),
-    ));
+    );
+  }
+
+  Future<dynamic> showCancelDialog(BuildContext context) {
+    return showDialog(
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                            title: Text('Abbrechen'),
+                            content: Text('Analyse abbrechen?'),
+                            actions: [
+                              TextButton(
+                                  onPressed: () => Navigator.pushNamed(
+                                      context, HomeScreen.routeName),
+                                  child: Text('Ok')),
+                              TextButton(
+                                  onPressed: () =>
+                                      Navigator.pop(context, 'Abbrechen'),
+                                  child: Text('Abbrechen'))
+                            ],
+                          ));
   }
 
   ButtonBar RatingButtonBar(BuildContext context) {
@@ -258,8 +293,7 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
             style: TextStyle(color: Colors.black, fontSize: fontSize),
           ),
           style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(
-                  Colors.white)),
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.white)),
         ),
         ElevatedButton(
           onPressed: _incrementCounter,
