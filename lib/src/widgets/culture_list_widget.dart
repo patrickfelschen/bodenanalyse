@@ -21,7 +21,7 @@ class _CultureListWidgetState extends State<CultureListWidget> {
     return ListView.builder(
         itemCount: items.length,
         itemBuilder: (context, index) {
-          return CultureItem(
+          return CultureItemWidget(
               cropModel: CropModel(
                 id: items[index].id,
                 type: items[index].type,

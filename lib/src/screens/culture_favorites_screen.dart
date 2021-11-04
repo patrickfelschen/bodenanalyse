@@ -28,9 +28,9 @@ class _CultureFavoritesScreenState extends State<CultureFavoritesScreen> {
             // TODO: add search bar
             child: Text('Searchbar'),
           ),
-          Expanded(
-            child: ListView(
-              /*padding: EdgeInsets.all(_padding),
+          Expanded( //todo: dynamisch Liste erzeugen
+            child: ListView(/*
+              padding: EdgeInsets.all(_padding),
               children: <Widget>[
                 Container(
                   height: _containerHeight,
@@ -55,7 +55,6 @@ class _CultureFavoritesScreenState extends State<CultureFavoritesScreen> {
                           setState(() {
 
                           });
-                          // TODO: change icon and set data
                         },
                       ),
                     ],
