@@ -6,11 +6,13 @@ class AnalysisProvider with ChangeNotifier {
   late SharedPreferencesService _sharedPreferencesService;
   late List<PropertyModel> _propertyList;
   late bool _tutorialSteps;
+  late String _cropName;
 
   AnalysisProvider() {
     _sharedPreferencesService = SharedPreferencesService();
     _propertyList = List.empty(growable: true);
     _tutorialSteps = false;
+    _cropName = '';
   }
 
   void addProperty(PropertyModel model) {
@@ -20,6 +22,10 @@ class AnalysisProvider with ChangeNotifier {
 
   void clearProperties() {
     _propertyList = List.empty(growable: true);
+  }
+
+  List<PropertyModel> getPropertyList() {
+    return _propertyList;
   }
 
   void printPropertyList() {
@@ -33,4 +39,12 @@ class AnalysisProvider with ChangeNotifier {
   bool getTutorialStesp() {
     return _tutorialSteps;
   }
-}
+
+  void setCropName(String cropName) {
+    _cropName = cropName;
+  }
+
+  String getCropName() {
+    return _cropName;
+  }
+ }

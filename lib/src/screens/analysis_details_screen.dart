@@ -1,3 +1,4 @@
+import 'package:bodenanalyse/src/models/property_model.dart';
 import 'package:bodenanalyse/src/providers/analysis_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -18,18 +19,36 @@ class _AnalysisDetailsScreenState extends State<AnalysisDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final AnalysisProvider _analysisProvider = Provider.of<AnalysisProvider>(context);
+    final AnalysisProvider _analysisProvider =
+        Provider.of<AnalysisProvider>(context);
+    final List<PropertyModel> _properties = _analysisProvider.getPropertyList();
+
+    int overallRating() {
+      int rating = 0;
+      _properties.forEach((element) {
+        rating += element.rating;
+      });
+      return rating;
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Auswertung'),
-
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+            _analysisProvider.getPropertyList().removeLast();
+          },
+        ),
       ),
       body: Center(
         child: Padding(
           padding: EdgeInsets.all(10),
           child: Column(
             children: <Widget>[
-              Text('Name der Kultur',
+              Text(
+                _analysisProvider.getCropName(),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 24.0,
@@ -42,7 +61,7 @@ class _AnalysisDetailsScreenState extends State<AnalysisDetailsScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         const Text('Struktur der Oberfläche:'),
-                        Text(_punkte),
+                        Text(_properties.elementAt(0).rating.toString()),
                       ],
                     ),
                     const Divider(),
@@ -50,7 +69,7 @@ class _AnalysisDetailsScreenState extends State<AnalysisDetailsScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         const Text('Durchwurzelung des Bodens:'),
-                        Text(_punkte),
+                        Text(_properties.elementAt(1).rating.toString()),
                       ],
                     ),
                     const Divider(),
@@ -58,7 +77,7 @@ class _AnalysisDetailsScreenState extends State<AnalysisDetailsScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         const Text('Makroporen / Bioporen:'),
-                        Text(_punkte),
+                        Text(_properties.elementAt(2).rating.toString()),
                       ],
                     ),
                     const Divider(),
@@ -66,7 +85,7 @@ class _AnalysisDetailsScreenState extends State<AnalysisDetailsScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         const Text('Gefüge und Verfestigungen:'),
-                        Text(_punkte),
+                        Text(_properties.elementAt(3).rating.toString()),
                       ],
                     ),
                     const Divider(),
@@ -74,7 +93,7 @@ class _AnalysisDetailsScreenState extends State<AnalysisDetailsScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         const Text('Organische Reststoffe:'),
-                        Text(_punkte),
+                        Text(_properties.elementAt(4).rating.toString()),
                       ],
                     ),
                     const Divider(),
@@ -82,7 +101,7 @@ class _AnalysisDetailsScreenState extends State<AnalysisDetailsScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         const Text('Farbe und Geruch:'),
-                        Text(_punkte),
+                        Text(_properties.elementAt(5).rating.toString()),
                       ],
                     ),
                     const Divider(),
@@ -93,7 +112,12 @@ class _AnalysisDetailsScreenState extends State<AnalysisDetailsScreen> {
                             style: TextStyle(
                                 color: Theme.of(context).colorScheme.primary,
                                 fontWeight: FontWeight.bold)),
-                        Text(_punkte),
+                        Text(
+                          overallRating().toString(),
+                          style: TextStyle(
+                              color: Theme.of(context).colorScheme.primary,
+                              fontWeight: FontWeight.bold),
+                        ),
                       ],
                     ),
                   ],
@@ -109,7 +133,11 @@ class _AnalysisDetailsScreenState extends State<AnalysisDetailsScreen> {
                     minimumSize: Size(400, 40),
                     primary: Colors.white,
                   ),
-                  child: Text('Fotos anzeigen', style: TextStyle(color: Theme.of(context).colorScheme.onSurface),),
+                  child: Text(
+                    'Fotos anzeigen',
+                    style: TextStyle(
+                        color: Theme.of(context).colorScheme.onSurface),
+                  ),
                 ),
               ),
               Padding(

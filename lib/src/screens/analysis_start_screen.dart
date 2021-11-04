@@ -266,7 +266,7 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
               {showCancelDialog(context, _analysisProvider)}
             else
               {
-                _decrementCounter()
+                _decrementCounter(), _analysisProvider.getPropertyList().removeLast()
               }
           },
         ),
@@ -356,6 +356,7 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
               _incrementIndex();
             }else {
               print('test');
+              savePropertyToProvider(-2, criteria);
               Navigator.pushNamed(context, AnalysisDetailsScreen.routeName);
             }
 
@@ -370,9 +371,15 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
         ),
         ElevatedButton(
           onPressed: () {
-            savePropertyToProvider(-1, criteria);
-            _incrementCounter();
-            _incrementIndex();
+            if(_counter < 6) {
+              savePropertyToProvider(-1, criteria);
+              _incrementCounter();
+              _incrementIndex();
+            }else {
+              print('test');
+              savePropertyToProvider(-1, criteria);
+              Navigator.pushNamed(context, AnalysisDetailsScreen.routeName);
+            }
           },
           child: Text(
             '-1',
@@ -385,9 +392,15 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
         ),
         ElevatedButton(
           onPressed: () {
-            savePropertyToProvider(0, criteria);
-            _incrementCounter();
-            _incrementIndex();
+            if(_counter < 6) {
+              savePropertyToProvider(0, criteria);
+              _incrementCounter();
+              _incrementIndex();
+            }else {
+              print('test');
+              savePropertyToProvider(0, criteria);
+              Navigator.pushNamed(context, AnalysisDetailsScreen.routeName);
+            }
           },
           child: Text(
             '0',
@@ -398,9 +411,15 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
         ),
         ElevatedButton(
           onPressed: () {
-            savePropertyToProvider(1, criteria);
-            _incrementCounter();
-            _incrementIndex();
+            if(_counter < 6) {
+              savePropertyToProvider(1, criteria);
+              _incrementCounter();
+              _incrementIndex();
+            }else {
+              print('test');
+              savePropertyToProvider(1, criteria);
+              Navigator.pushNamed(context, AnalysisDetailsScreen.routeName);
+            }
           },
           child: Text(
             '+1',
@@ -412,9 +431,15 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
         ),
         ElevatedButton(
           onPressed: () {
-            savePropertyToProvider(2, criteria);
-            _incrementCounter();
-            _incrementIndex();
+            if(_counter < 6) {
+              savePropertyToProvider(2, criteria);
+              _incrementCounter();
+              _incrementIndex();
+            }else {
+              print('test');
+              savePropertyToProvider(2, criteria);
+              Navigator.pushNamed(context, AnalysisDetailsScreen.routeName);
+            }
           },
           child: Text(
             '+2',
