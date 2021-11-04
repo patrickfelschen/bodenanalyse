@@ -130,7 +130,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 100),
+              padding: EdgeInsets.only(left: 100,right:100,top: 10,bottom: 20),
               child: MaterialButton(
                 minWidth: 200,
                 height: 60,
