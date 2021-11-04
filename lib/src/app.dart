@@ -1,3 +1,4 @@
+import 'package:bodenanalyse/src/providers/analysis_provider.dart';
 import 'package:bodenanalyse/src/providers/auth_provider.dart';
 import 'package:bodenanalyse/src/providers/crop_provider.dart';
 import 'package:bodenanalyse/src/screens/analysis_start_screen.dart';
@@ -114,6 +115,9 @@ class App extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => CropProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => AnalysisProvider(),
+        )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -131,7 +135,7 @@ class App extends StatelessWidget {
         themeMode: ThemeMode.light,
         theme: _theme,
         // Debug Option
-        // initialRoute: RegistrationScreen.routeName,
+         initialRoute: AnalysisStartScreen.routeName,
         onGenerateRoute: _onGenerateRoute,
       ),
     );
