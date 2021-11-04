@@ -1,5 +1,6 @@
 import 'package:bodenanalyse/src/screens/crop_list_screen.dart';
 import 'package:bodenanalyse/src/screens/edit_field_screen.dart';
+import 'package:bodenanalyse/src/screens/home_screen.dart';
 import 'package:bodenanalyse/src/widgets/sample_list_widget.dart';
 import 'package:easy_search/easy_search.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,10 @@ class _FieldDetailsScreenState extends State<FieldDetailsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Felddetails"), //todo: Name und ArtOberboden in Titel
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {Navigator.pushNamed(context, HomeScreen.routeName);},
+        ),
         actions: [
           MaterialButton(
             child: Text(

@@ -1,5 +1,7 @@
 import 'package:bodenanalyse/src/models/property_model.dart';
 import 'package:bodenanalyse/src/providers/analysis_provider.dart';
+import 'package:bodenanalyse/src/providers/field_provider.dart';
+import 'package:bodenanalyse/src/screens/field_details_screen.dart';
 import 'package:bodenanalyse/src/screens/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +25,8 @@ class _AnalysisDetailsScreenState extends State<AnalysisDetailsScreen> {
   Widget build(BuildContext context) {
     final AnalysisProvider _analysisProvider =
     Provider.of<AnalysisProvider>(context);
+    final FieldProvider _fieldProvider =
+    Provider.of<FieldProvider>(context);
     final List<PropertyModel> _properties = _analysisProvider.getPropertyList();
 
     int overallRating() {
@@ -54,7 +58,8 @@ class _AnalysisDetailsScreenState extends State<AnalysisDetailsScreen> {
         actions: [
           IconButton(icon: Icon(Icons.save), onPressed: () {
             saveSample();
-            Navigator.pushNamed(context, HomeScreen.routeName);
+            _fieldProvider.loadAllSamples();
+            Navigator.pushNamed(context, FieldDetailsScreen.routeName);
           })
         ],
       ),
