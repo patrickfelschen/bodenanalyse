@@ -1,4 +1,5 @@
 import 'package:bodenanalyse/src/models/field_model.dart';
+import 'package:bodenanalyse/src/providers/analysis_provider.dart';
 import 'package:bodenanalyse/src/providers/field_provider.dart';
 import 'package:bodenanalyse/src/screens/field_details_screen.dart';
 import 'package:bodenanalyse/src/screens/new_field_screen.dart';
@@ -20,6 +21,8 @@ class _FieldListWidgetState extends State<FieldListWidget> {
   @override
   Widget build(BuildContext context) {
     final FieldProvider _fieldProvider = Provider.of<FieldProvider>(context);
+    final AnalysisProvider _analysisProvider =
+        Provider.of<AnalysisProvider>(context);
 
     //_fieldProvider.loadAllFields();
 
@@ -34,6 +37,7 @@ class _FieldListWidgetState extends State<FieldListWidget> {
             fieldModel: fieldModel,
             onTap: () {
               _fieldProvider.setSelectedFieldModel(fieldModel);
+              _analysisProvider.setSelectedFieldModel(fieldModel);
               _fieldProvider.loadAllSamples();
               Navigator.pushNamed(context, FieldDetailsScreen.routeName);
             },

@@ -1,5 +1,4 @@
 import 'package:bodenanalyse/src/models/property_model.dart';
-import 'package:bodenanalyse/src/models/sample_model.dart';
 import 'package:bodenanalyse/src/providers/analysis_provider.dart';
 import 'package:bodenanalyse/src/screens/home_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -34,10 +33,12 @@ class _AnalysisDetailsScreenState extends State<AnalysisDetailsScreen> {
       return rating;
     }
 
-    void saveSample() {
+    Future<void> saveSample() async {
       _analysisProvider.setLng(8.02236695003242);
       _analysisProvider.setLat(52.285056295554796);
       _analysisProvider.setDateTime(DateTime.now());
+
+      await _analysisProvider.createSample();
     }
 
     return Scaffold(

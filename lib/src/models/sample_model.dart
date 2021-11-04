@@ -36,7 +36,7 @@ class SampleModel {
   Map<String, dynamic> toJson() {
     return {
       "id": id,
-      "localDateTime": datetime,
+      "localDateTime": datetime.toString(),
       "lat": lat,
       "lng": lng,
       "crop": cropModel.toJson(),
@@ -46,5 +46,10 @@ class SampleModel {
           )
           .toList()
     };
+  }
+
+  @override
+  String toString() {
+    return 'SampleModel{id: $id, datetime: $datetime, lat: $lat, lng: $lng, cropModel: $cropModel, properties: $properties}';
   }
 }

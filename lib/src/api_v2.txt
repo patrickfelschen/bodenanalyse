@@ -8,6 +8,9 @@
 
 ------- Ab hier jeweils mit JWT-Token im Header --------
 
+<server-url>/user
+    update: { User Objekt }
+
 <server-url>/fields
     get:
         Antwort: alle Felder vom angemeldeten User
@@ -15,28 +18,19 @@
         Antwort: erfolgreich / fehlgeschlagen
 
 <server-url>/fields/:fieldId
-    get:
-        Antwort: Field mit der "fieldId"
     update:
         Antwort: erfolgreich / fehlgeschlagen
     delete:
         Antwort: erfolgreich / fehlgeschlagen
 
 <server-url>/fields/:fieldId/samples
-    get:
-        Antwort: alle Samples vom Field mit der fieldId
     post: { Samples Objekt }
-        Antwort: erfolgreich / fehlgeschlagen
-    update: { Samples Objekt }
         Antwort: erfolgreich / fehlgeschlagen
 
 <server-url>/fields/:fieldId/samples/:sampleId
-    get:
-        Antwort: Sample mit der "sampleId"
-    post: { Sample Objekt }
-        Antwort: erfolgreich / fehlgeschlagen
-    update: { Sample Objekt }
-        Antwort: erfolgreich / fehlgeschlagen
     delete:
         Antwort: erfolgreich / fehlgeschlagen
 
+<server-url>/crops
+    get:
+    post: {cropId, true/false}
