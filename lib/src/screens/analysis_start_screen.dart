@@ -1,7 +1,10 @@
+import 'package:bodenanalyse/src/models/property_model.dart';
+import 'package:bodenanalyse/src/providers/analysis_provider.dart';
 import 'package:bodenanalyse/src/screens/home_screen.dart';
 import 'package:bodenanalyse/src/widgets/analysis_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:progress_stepper/progress_stepper.dart';
+import 'package:provider/provider.dart';
 
 class AnalysisStartScreen extends StatefulWidget {
   const AnalysisStartScreen({Key? key}) : super(key: key);
@@ -171,6 +174,36 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final AnalysisProvider _analysisProvider =
+        Provider.of<AnalysisProvider>(context);
+
+    final List<Widget> stepTextList = <Widget>[
+      Text('Struktur der Oberfläche',
+          style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: MediaQuery.of(context).size.width / 26)),
+      Text('Durchwurzelung des Bodens',
+          style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: MediaQuery.of(context).size.width / 26)),
+      Text('Makroporen/Bioporen',
+          style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: MediaQuery.of(context).size.width / 26)),
+      Text('Gefüge und Verfestigung',
+          style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: MediaQuery.of(context).size.width / 26)),
+      Text('Oragnische Reststoffe',
+          style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: MediaQuery.of(context).size.width / 26)),
+      Text('Farbe und Geruch',
+          style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: MediaQuery.of(context).size.width / 26))
+    ];
+
     switch (_counter) {
       case 1:
         stackChildren = _stackChildrenStep1;
@@ -197,13 +230,16 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
         title: Text('Schritt $_counter'),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
-          onPressed: _decrementCounter,
+          onPressed: () => {
+            if (_counter == 1)
+              {showCancelDialog(context)}
+            else
+              {_decrementCounter()}
+          },
         ),
         actions: [
           IconButton(
-              onPressed: () => {
-                    showCancelDialog(context)
-                  },
+              onPressed: () => {showCancelDialog(context)},
               icon: Icon(Icons.cancel_outlined))
         ],
       ),
@@ -218,10 +254,7 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
                   currentStep: _counter,
                   progressColor: Color(0xFF8BA94D),
                 ))),
-        Text(
-          'Struktur der Oberfläche',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width/26),
-        ),
+        stepTextList[(_counter - 1)],
         Stack(
           children: stackChildren,
         ),
@@ -242,21 +275,20 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
 
   Future<dynamic> showCancelDialog(BuildContext context) {
     return showDialog(
-                      context: context,
-                      builder: (BuildContext context) => AlertDialog(
-                            title: Text('Abbrechen'),
-                            content: Text('Analyse abbrechen?'),
-                            actions: [
-                              TextButton(
-                                  onPressed: () => Navigator.pushNamed(
-                                      context, HomeScreen.routeName),
-                                  child: Text('Ok')),
-                              TextButton(
-                                  onPressed: () =>
-                                      Navigator.pop(context, 'Abbrechen'),
-                                  child: Text('Abbrechen'))
-                            ],
-                          ));
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+              title: Text('Abbrechen'),
+              content: Text('Analyse abbrechen?'),
+              actions: [
+                TextButton(
+                    onPressed: () =>
+                        Navigator.pushNamed(context, HomeScreen.routeName),
+                    child: Text('Ok')),
+                TextButton(
+                    onPressed: () => Navigator.pop(context, 'Abbrechen'),
+                    child: Text('Abbrechen'))
+              ],
+            ));
   }
 
   ButtonBar RatingButtonBar(BuildContext context) {
