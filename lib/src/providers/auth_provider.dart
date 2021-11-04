@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:bodenanalyse/src/models/settings_model.dart';
 import 'package:bodenanalyse/src/models/user_model.dart';
 import 'package:bodenanalyse/src/services/shared_preferences_service.dart';
 import 'package:flutter/foundation.dart';
@@ -120,6 +121,8 @@ class AuthProvider with ChangeNotifier {
     print("Status Code:" + response.statusCode.toString());
     print(response.body);
   }
+
+  Future<void> updateUserSettings(SettingsModel settingsModel) async {}
 
   Future<void> signOut() async {
     await _sharedPreferencesService.saveToken(token: "");

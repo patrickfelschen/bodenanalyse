@@ -18,6 +18,7 @@ class CropProvider with ChangeNotifier {
     String? token = await _sharedPreferencesService.loadToken();
 
     if (token == null || token == "") {
+      print("No Token");
       return List.empty();
     }
 
@@ -30,22 +31,22 @@ class CropProvider with ChangeNotifier {
       headers: reqHeader,
     );
 
-    if (response.statusCode == 200) {
-      Map<String, dynamic> jsonBody = jsonDecode(response.body);
-
-      List<CropModel> responseCrops = (jsonBody as List)
-          .map(
-            (e) => CropModel.fromJson(e),
-          )
-          .toList();
-      return responseCrops;
-    }
-
     print("POST Request:");
     print(reqHeader);
     print("RESPONSE:");
     print("Status Code:" + response.statusCode.toString());
     print(response.body);
+
+    if (response.statusCode == 200) {
+      Map<String, dynamic> jsonBody = jsonDecode(response.body);
+
+      List<CropModel> responseCrops = (jsonBody["crops"] as List)
+          .map((e) => CropModel.fromJson(e))
+          .toList();
+
+      print(responseCrops.toString());
+      return responseCrops;
+    }
 
     return List.empty();
   }

@@ -3,10 +3,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class EvaluationCard extends StatelessWidget {
+class SampleCardWidget extends StatelessWidget {
   final SampleModel sampleModel;
 
-  const EvaluationCard({Key? key, required this.sampleModel}) : super(key: key);
+  const SampleCardWidget({Key? key, required this.sampleModel})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +17,9 @@ class EvaluationCard extends StatelessWidget {
         children: <Widget>[
           ListTile(
             leading: Icon(Icons.eco_sharp),
-            title: Text(sampleModel.cropModel.type),
-            subtitle: Text(DateFormat('dd.MM.yyyy kk:mm').format(sampleModel.datetime)),
+            title: Text(sampleModel.cropModel.name),
+            subtitle: Text(
+                DateFormat('dd.MM.yyyy kk:mm').format(sampleModel.datetime)),
           ),
         ],
       ),

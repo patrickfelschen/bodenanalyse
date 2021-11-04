@@ -1,7 +1,7 @@
 import 'package:bodenanalyse/src/providers/auth_provider.dart';
 import 'package:bodenanalyse/src/providers/crop_provider.dart';
-import 'package:bodenanalyse/src/screens/analysis_details_screen.dart';
 import 'package:bodenanalyse/src/screens/analysis_start_screen.dart';
+import 'package:bodenanalyse/src/screens/crop_list_screen.dart';
 import 'package:bodenanalyse/src/screens/culture_favorites_screen.dart';
 import 'package:bodenanalyse/src/screens/edit_field_screen.dart';
 import 'package:bodenanalyse/src/screens/field_details_screen.dart';
@@ -97,6 +97,8 @@ class App extends StatelessWidget {
               return CultureFavoritesScreen();
             case ProfileScreen.routeName:
               return ProfileScreen();
+            case CropListScreen.routeName:
+              return CropListScreen();
             default:
               return HomeScreen();
           }

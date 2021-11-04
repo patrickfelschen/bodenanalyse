@@ -1,4 +1,4 @@
-import 'package:bodenanalyse/src/screens/analysis_start_screen.dart';
+import 'package:bodenanalyse/src/screens/crop_list_screen.dart';
 import 'package:bodenanalyse/src/screens/edit_field_screen.dart';
 import 'package:easy_search/easy_search.dart';
 import 'package:flutter/material.dart';
@@ -36,8 +36,7 @@ class _FieldDetailsScreenState extends State<FieldDetailsScreen> {
         children: [
           Container(
             padding: EdgeInsets.only(bottom: 20),
-            child:
-            EasySearch(
+            child: EasySearch(
               //von: https://pub.dev/packages/easy_search
               searchResultSettings: SearchResultSettings(
                 padding: EdgeInsets.only(left: 8.0, top: 8.0, right: 8.0),
@@ -52,10 +51,9 @@ class _FieldDetailsScreenState extends State<FieldDetailsScreen> {
               ),
             ),
           ),
-
-          Expanded(child:
-          ListView(
-            /* statische Programmierung, falls DB-Abfrage nicht funktioniert:
+          Expanded(
+            child: ListView(
+                /* statische Programmierung, falls DB-Abfrage nicht funktioniert:
             //todo: Karten automatisch erzeugen mit Daten aus DB
             padding: const EdgeInsets.all(8),
             children: <Widget>[
@@ -109,13 +107,10 @@ class _FieldDetailsScreenState extends State<FieldDetailsScreen> {
               ),
             ],
             */
+                ),
           ),
-          ),
-
         ],
       ),
-
-
       floatingActionButton: startAnalysis(context),
     );
   }
@@ -126,14 +121,16 @@ Widget startAnalysis(context) {
     width: 350,
     child: FloatingActionButton.extended(
       onPressed: () {
-        Navigator.pushNamed(context, AnalysisStartScreen.routeName);
+        Navigator.pushNamed(context, CropListScreen.routeName);
       },
       label: const Text(
         'Bewertung starten',
         style: TextStyle(color: Colors.white),
       ),
       backgroundColor: Theme.of(context).colorScheme.secondary,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
     ),
   );
 }
