@@ -8,9 +8,15 @@ class AnalysisProvider with ChangeNotifier {
 
   AnalysisProvider() {
     _sharedPreferencesService = SharedPreferencesService();
+    _propertyList = List.empty(growable: true);
   }
 
   void addProperty(PropertyModel model) {
     _propertyList.add(model);
+    notifyListeners();
+  }
+
+  void printPropertyList() {
+    print(_propertyList);
   }
 }

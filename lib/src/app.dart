@@ -14,6 +14,7 @@ import 'package:bodenanalyse/src/screens/new_field_screen.dart';
 import 'package:bodenanalyse/src/screens/profile_screen.dart';
 import 'package:bodenanalyse/src/screens/registration_screen.dart';
 import 'package:bodenanalyse/src/screens/splash_screen.dart';
+import 'package:bodenanalyse/src/widgets/tutorial_material_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -139,7 +140,7 @@ class App extends StatelessWidget {
         themeMode: ThemeMode.light,
         theme: _theme,
         // Debug Option
-        initialRoute: AnalysisStartScreen.routeName,
+        // initialRoute: AnalysisStartScreen.routeName,
         onGenerateRoute: _onGenerateRoute,
       ),
     );

@@ -57,6 +57,14 @@ flutter:
     - assets/images/step5_good_example.jpg
     - assets/images/step6_bad_example.png
     - assets/images/step6_good_example.png
+    - assets/images/feld_icon_12.png
+    - assets/images/kulturen_icon_13.png
+    - assets/images/tutorial_grube.png
+    - assets/images/tutorial_hacke.png
+    - assets/images/tutorial_massstab.png
+    - assets/images/tutorial_messer.png
+    - assets/images/tutorial_schritt3.png
+    - assets/images/tutorial_spaten.png
 
 
   fonts:
