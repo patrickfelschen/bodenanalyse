@@ -13,7 +13,7 @@ class CropModel {
     return CropModel(
       id: json["id"] as int,
       name: json["name"] as String,
-      favorite: json["favorite"] as bool,
+      favorite: json["favorite"] ?? false,
     );
   }
 

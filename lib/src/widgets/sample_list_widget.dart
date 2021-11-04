@@ -1,6 +1,8 @@
 import 'package:bodenanalyse/src/models/sample_model.dart';
+import 'package:bodenanalyse/src/providers/field_provider.dart';
 import 'package:bodenanalyse/src/widgets/sample_card_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'sample_card_widget.dart';
 
@@ -12,24 +14,20 @@ class SampleListWidget extends StatefulWidget {
 }
 
 class _SampleListWidgetState extends State<SampleListWidget> {
-  final List<SampleModel> items = <SampleModel>[];
-
   @override
   Widget build(BuildContext context) {
+    final FieldProvider _fieldProvider = Provider.of<FieldProvider>(context);
+
     return ListView.builder(
-        itemCount: items.length,
+        itemCount: _fieldProvider.getSamples().length,
         itemBuilder: (context, index) {
+          SampleModel sampleModel = _fieldProvider.getSamples()[index];
+
+          print(sampleModel);
+
           return SampleCardWidget(
-              sampleModel: SampleModel(
-            id: items[index].id,
-            datetime: items[index].datetime,
-            lng: items[index].lng,
-            lat: items[index].lat,
-            cropModel: items[index].cropModel,
-            properties: items[index].properties,
-          ));
-        }
-    );
+            sampleModel: sampleModel,
+          );
+        });
   }
 }
-

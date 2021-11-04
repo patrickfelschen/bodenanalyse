@@ -1,7 +1,7 @@
+import 'package:bodenanalyse/src/providers/field_provider.dart';
 import 'package:bodenanalyse/src/screens/home_screen.dart';
-import 'package:bodenanalyse/src/screens/field_details_screen.dart';
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
 
 class EditFieldScreen extends StatefulWidget {
   const EditFieldScreen({Key? key}) : super(key: key);
@@ -27,22 +27,29 @@ class _EditFieldScreenState extends State<EditFieldScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final FieldProvider _fieldProvider = Provider.of<FieldProvider>(context);
+
+    textController1.text = _fieldProvider.getSelectedFieldModel().name;
+    textController2.text =
+        _fieldProvider.getSelectedFieldModel().soilModel.name;
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Feld bearbeiten"),
       ),
-      body:
-      ListView(
-        padding: EdgeInsets.only(top:8,left:8,right:8,bottom:200),
-        children: <Widget> [
+      body: ListView(
+        padding: EdgeInsets.only(top: 8, left: 8, right: 8, bottom: 200),
+        children: <Widget>[
           Container(
             height: _containerHeight,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget >[
+              children: <Widget>[
                 Text('Name: '),
                 Flexible(
-                  child: TextField(controller: textController1,),
+                  child: TextField(
+                    controller: textController1,
+                  ),
                 ),
               ],
             ),
@@ -52,9 +59,12 @@ class _EditFieldScreenState extends State<EditFieldScreen> {
             height: _containerHeight,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const <Widget> [
+              children: const <Widget>[
                 Text('Standort: '),
-                Text('Wird automatisch ermittelt', style: TextStyle(color: Colors.grey),)
+                Text(
+                  'Wird automatisch ermittelt',
+                  style: TextStyle(color: Colors.grey),
+                )
               ],
             ),
           ),
@@ -63,85 +73,80 @@ class _EditFieldScreenState extends State<EditFieldScreen> {
             height: _containerHeight,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget> [
+              children: <Widget>[
                 Text('Bodenart des Oberbodens: '),
                 Flexible(
-                  child: TextField(controller: textController2,),
+                  child: TextField(
+                    controller: textController2,
+                  ),
                 ),
               ],
             ),
           ),
           const Divider(),
-
-
         ],
       ),
-
       floatingActionButton: buttons(context),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-
     );
   }
 }
 
-
-Widget buttons(BuildContext context){
-  return Column(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-          SizedBox(
-          width: 350,
-          child:
-          FloatingActionButton.extended(
-            onPressed: (){
-              showDialog<String>(
-                  context: context,
-                  builder: (BuildContext context) => AlertDialog(
-                title: const Text('Löschen'),
-                content: const Text('Wollen Sie das Feld wirklich löschen?'),
-                actions: <Widget>[
-                  TextButton(
-                    onPressed: () => Navigator.pop(context, 'Cancel'),
-                    child: const Text('Abbrechen'),
+Widget buttons(BuildContext context) {
+  return Column(mainAxisAlignment: MainAxisAlignment.end, children: [
+    SizedBox(
+      width: 350,
+      child: FloatingActionButton.extended(
+        onPressed: () {
+          showDialog<String>(
+            context: context,
+            builder: (BuildContext context) => AlertDialog(
+              title: const Text('Löschen'),
+              content: const Text('Wollen Sie das Feld wirklich löschen?'),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () => Navigator.pop(context, 'Cancel'),
+                  child: const Text('Abbrechen'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, HomeScreen.routeName);
+                    //todo: Feld löschen
+                  },
+                  child: const Text(
+                    'Löschen',
+                    style: TextStyle(color: Colors.red),
                   ),
-                  TextButton(
-                    onPressed: () {Navigator.pushNamed(context, HomeScreen.routeName);
-                      //todo: Feld löschen
-                    },
-                    child: const Text('Löschen', style: TextStyle(color: Colors.red),),
-                  ),
-                ],
-              ),
-              );
-            },
-            label: const Text('Feld löschen', style: TextStyle(color: Colors.white),),
-            backgroundColor: Theme.of(context).colorScheme.secondary,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10)
+                ),
+              ],
             ),
-          ),
+          );
+        },
+        label: const Text(
+          'Feld löschen',
+          style: TextStyle(color: Colors.white),
         ),
-
-        SizedBox(
-          height: 10,
+        backgroundColor: Theme.of(context).colorScheme.secondary,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      ),
+    ),
+    SizedBox(
+      height: 10,
+    ),
+    SizedBox(
+      width: 350,
+      child: FloatingActionButton.extended(
+        onPressed: () {
+          Navigator.pop(context);
+          //todo: neues Feld anlegen
+        },
+        label: const Text(
+          'Feld speichern',
+          style: TextStyle(color: Colors.white),
         ),
-
-        SizedBox(
-          width: 350,
-          child:
-          FloatingActionButton.extended(
-            onPressed: (){
-              Navigator.pushNamed(context, FieldDetailsScreen.routeName);
-              //todo: neues Feld anlegen
-            },
-            label: const Text('Feld speichern', style: TextStyle(color: Colors.white),),
-            backgroundColor: Theme.of(context).colorScheme.primary,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10)
-            ),
-          ),
-        ),
-      ]
-  );
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      ),
+    ),
+  ]);
 }
-

@@ -44,7 +44,6 @@ class CropProvider with ChangeNotifier {
           .map((e) => CropModel.fromJson(e))
           .toList();
 
-      print(responseCrops.toString());
       return responseCrops;
     }
 
