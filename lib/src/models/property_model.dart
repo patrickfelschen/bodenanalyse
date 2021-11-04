@@ -3,31 +3,31 @@ import 'package:bodenanalyse/src/models/criteria_model.dart';
 class PropertyModel {
   final int id;
   final int rating;
-  final String url;
-  final CriteriaModel criteria;
+  final String criteriaName;
 
   PropertyModel({
     required this.id,
     required this.rating,
-    required this.url,
-    required this.criteria,
+    required this.criteriaName,
   });
 
   factory PropertyModel.fromJson(Map<String, dynamic> json) {
     return PropertyModel(
       id: json["id"] as int,
       rating: json["rating"] as int,
-      url: json["url"] as String,
-      criteria: CriteriaModel.fromJson(json["criteria"]),
-    );
+      criteriaName: json["criteriaName"] as String);
   }
 
   Map<String, dynamic> toJson() {
     return {
       "id": id,
       "rating": rating,
-      "url": url,
-      "criteria": criteria.toJson(),
+      "criteria": criteriaName,
     };
+  }
+
+  @override
+  String toString() {
+    return 'PropertyModel{id: $id, rating: $rating, criteriaName: $criteriaName}';
   }
 }

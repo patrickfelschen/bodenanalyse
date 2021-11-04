@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:bodenanalyse/src/models/property_model.dart';
 import 'package:bodenanalyse/src/providers/analysis_provider.dart';
 import 'package:bodenanalyse/src/screens/home_screen.dart';
@@ -175,34 +177,52 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
   @override
   Widget build(BuildContext context) {
     final AnalysisProvider _analysisProvider =
-        Provider.of<AnalysisProvider>(context);
+    Provider.of<AnalysisProvider>(context);
 
-    final List<Widget> stepTextList = <Widget>[
-      Text('Struktur der Oberfläche',
+    final Map<String, Widget> stepTextList = {
+      'Oberfläche': Text('Struktur der Oberfläche',
           style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: MediaQuery.of(context).size.width / 26)),
-      Text('Durchwurzelung des Bodens',
+              fontSize: MediaQuery
+                  .of(context)
+                  .size
+                  .width / 26)),
+      'Durchwurzelung': Text('Durchwurzelung des Bodens',
           style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: MediaQuery.of(context).size.width / 26)),
-      Text('Makroporen/Bioporen',
+              fontSize: MediaQuery
+                  .of(context)
+                  .size
+                  .width / 26)),
+      'MakroMikroporen': Text('Makroporen/Bioporen',
           style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: MediaQuery.of(context).size.width / 26)),
-      Text('Gefüge und Verfestigung',
+              fontSize: MediaQuery
+                  .of(context)
+                  .size
+                  .width / 26)),
+      'GefügeVerfestigung': Text('Gefüge und Verfestigung',
           style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: MediaQuery.of(context).size.width / 26)),
-      Text('Oragnische Reststoffe',
+              fontSize: MediaQuery
+                  .of(context)
+                  .size
+                  .width / 26)),
+      'OrganischeReststoffe': Text('Oraganische Reststoffe',
           style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: MediaQuery.of(context).size.width / 26)),
-      Text('Farbe und Geruch',
+              fontSize: MediaQuery
+                  .of(context)
+                  .size
+                  .width / 26)),
+      'FarbeGeruch': Text('Farbe und Geruch',
           style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: MediaQuery.of(context).size.width / 26))
-    ];
+              fontSize: MediaQuery
+                  .of(context)
+                  .size
+                  .width / 26))
+    };
 
     switch (_counter) {
       case 1:
@@ -230,7 +250,8 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
         title: Text('Schritt $_counter'),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
-          onPressed: () => {
+          onPressed: () =>
+          {
             if (_counter == 1)
               {showCancelDialog(context)}
             else
@@ -248,13 +269,18 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
             child: Padding(
                 padding: const EdgeInsets.only(top: 4, left: 2, right: 2),
                 child: ProgressStepper(
-                  width: MediaQuery.of(context).size.width,
+                  width: MediaQuery
+                      .of(context)
+                      .size
+                      .width,
                   height: 10,
                   stepCount: _steps,
                   currentStep: _counter,
                   progressColor: Color(0xFF8BA94D),
                 ))),
-        stepTextList[(_counter - 1)],
+        stepTextList.entries
+            .elementAt(_counter - 1)
+            .value,
         Stack(
           children: stackChildren,
         ),
@@ -263,11 +289,17 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
             icon: Icon(
               Icons.swap_horizontal_circle_outlined,
               size: 50,
-              color: Theme.of(context).colorScheme.primary,
+              color: Theme
+                  .of(context)
+                  .colorScheme
+                  .primary,
             )),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [RatingButtonBar(context)],
+          children: [RatingButtonBar(context, stepTextList.entries
+              .elementAt((_counter - 1))
+              .key)
+          ],
         )
       ]),
     );
@@ -276,7 +308,8 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
   Future<dynamic> showCancelDialog(BuildContext context) {
     return showDialog(
         context: context,
-        builder: (BuildContext context) => AlertDialog(
+        builder: (BuildContext context) =>
+            AlertDialog(
               title: Text('Abbrechen'),
               content: Text('Analyse abbrechen?'),
               actions: [
@@ -291,35 +324,63 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
             ));
   }
 
-  ButtonBar RatingButtonBar(BuildContext context) {
+  ButtonBar RatingButtonBar(BuildContext context, String criteria) {
     Color textColor = Colors.white;
     double fontSize = 20;
+
+    final AnalysisProvider _analysisProvider =
+    Provider.of<AnalysisProvider>(context);
+
+    void savePropertyToProvider(int ratingValue, String criteriaName) {
+      _analysisProvider.addProperty(PropertyModel(
+        id: 0,
+        rating: ratingValue,
+        criteriaName: criteriaName,
+      ));
+    }
+
     return ButtonBar(
       alignment: MainAxisAlignment.spaceEvenly,
       children: [
         ElevatedButton(
-          onPressed: _incrementCounter,
+          onPressed: () {
+            savePropertyToProvider(-2, criteria);
+            _incrementCounter();
+          },
           child: Text(
             '-2',
             style: TextStyle(color: textColor, fontSize: fontSize),
           ),
           style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(
-                  Theme.of(context).colorScheme.secondary)),
+                  Theme
+                      .of(context)
+                      .colorScheme
+                      .secondary)),
         ),
         ElevatedButton(
-          onPressed: _incrementCounter,
+          onPressed: () {
+            savePropertyToProvider(-1, criteria);
+            _incrementCounter();
+          },
           child: Text(
             '-1',
             style: TextStyle(color: textColor, fontSize: fontSize),
           ),
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(
-                Theme.of(context).colorScheme.secondary.withOpacity(0.5)),
+                Theme
+                    .of(context)
+                    .colorScheme
+                    .secondary
+                    .withOpacity(0.5)),
           ),
         ),
         ElevatedButton(
-          onPressed: _incrementCounter,
+          onPressed: () {
+            savePropertyToProvider(0, criteria);
+            _incrementCounter();
+          },
           child: Text(
             '0',
             style: TextStyle(color: Colors.black, fontSize: fontSize),
@@ -328,24 +389,37 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
               backgroundColor: MaterialStateProperty.all<Color>(Colors.white)),
         ),
         ElevatedButton(
-          onPressed: _incrementCounter,
+          onPressed: () {
+            savePropertyToProvider(1, criteria);
+            _incrementCounter();
+          },
           child: Text(
             '+1',
             style: TextStyle(color: textColor, fontSize: fontSize),
           ),
           style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(
-                  Theme.of(context).colorScheme.primary.withOpacity(0.5))),
+                  Theme
+                      .of(context)
+                      .colorScheme
+                      .primary
+                      .withOpacity(0.5))),
         ),
         ElevatedButton(
-          onPressed: _incrementCounter,
+          onPressed: () {
+            savePropertyToProvider(2, criteria);
+            _incrementCounter();
+          },
           child: Text(
             '+2',
             style: TextStyle(color: textColor, fontSize: fontSize),
           ),
           style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(
-                  Theme.of(context).colorScheme.primary)),
+                  Theme
+                      .of(context)
+                      .colorScheme
+                      .primary)),
         )
       ],
     );
