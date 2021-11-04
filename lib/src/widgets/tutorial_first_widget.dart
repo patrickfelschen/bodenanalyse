@@ -3,14 +3,14 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class TutorialMaterialWidget extends StatefulWidget {
-  const TutorialMaterialWidget({Key? key}) : super(key: key);
+class TutorialSecondWidget extends StatefulWidget {
+  const TutorialSecondWidget({Key? key}) : super(key: key);
 
   @override
-  _TutorialMaterialWidgetState createState() => _TutorialMaterialWidgetState();
+  _TutorialSecondWidgetState createState() => _TutorialSecondWidgetState();
 }
 
-class _TutorialMaterialWidgetState extends State<TutorialMaterialWidget> {
+class _TutorialSecondWidgetState extends State<TutorialSecondWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
