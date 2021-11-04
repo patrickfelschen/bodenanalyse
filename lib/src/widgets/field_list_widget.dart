@@ -1,4 +1,5 @@
 import 'package:bodenanalyse/src/models/field_model.dart';
+import 'package:bodenanalyse/src/models/soil_model.dart';
 import 'package:bodenanalyse/src/screens/new_field_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -26,6 +27,10 @@ class _FieldListWidgetState extends State<FieldListWidget> {
               lat: 1.0,
               lng: 1.0,
               name: "name",
+              soilModel: SoilModel(
+                id: 0,
+                name: "",
+              ),
             ),
           ),
           FieldCard(
@@ -34,6 +39,10 @@ class _FieldListWidgetState extends State<FieldListWidget> {
               lat: 1.0,
               lng: 1.0,
               name: "name",
+              soilModel: SoilModel(
+                id: 0,
+                name: "",
+              ),
             ),
           ),
           FieldCard(
@@ -42,6 +51,10 @@ class _FieldListWidgetState extends State<FieldListWidget> {
               lat: 1.0,
               lng: 1.0,
               name: "name",
+              soilModel: SoilModel(
+                id: 0,
+                name: "",
+              ),
             ),
           ),
         ],
@@ -51,7 +64,7 @@ class _FieldListWidgetState extends State<FieldListWidget> {
           Navigator.pushNamed(context, NewFieldScreen.routeName);
         },
         child: const Icon(Icons.add),
-        backgroundColor: const Color(0xFF8BA94D),
+        backgroundColor: Theme.of(context).colorScheme.secondary,
       ),
     );
   }

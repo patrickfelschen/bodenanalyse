@@ -17,54 +17,70 @@ class FieldCard extends StatelessWidget {
     Completer<GoogleMapController> _controller = Completer();
 
     return Card(
+        color: Theme.of(context).colorScheme.primary,
         child: ExpansionTile(
-      childrenPadding: const EdgeInsets.only(left: 16.0, right: 16.0),
-      title: Text('Feld 1'),
-      children: <Widget>[
-        Container(
-          height: 200,
-          width: double.infinity,
-          child: GoogleMap(
-            mapType: MapType.hybrid,
-            initialCameraPosition: CameraPosition(
-                target: LatLng(37.42796133580664, -122.085749655962),
-                zoom: 14.0),
-            gestureRecognizers: Set()
-              ..add(Factory<PanGestureRecognizer>(() => PanGestureRecognizer()))
-              ..add(Factory<VerticalDragGestureRecognizer>(
-                  () => VerticalDragGestureRecognizer())),
-            markers: Set()
-              ..add(Marker(
-                  markerId: MarkerId('1'),
-                  position: LatLng(37.42796133580664, -122.085749655962))),
-            onMapCreated: (GoogleMapController controller) {
-              _controller.complete(controller);
-            },
+          leading: Icon(
+            Icons.agriculture,
+            size: 48.0,
           ),
-        ),
-        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              Text(
-                'Feld 1',
-                style: TextStyle(fontWeight: FontWeight.bold),
+          iconColor: Theme.of(context).colorScheme.onPrimary,
+          collapsedIconColor: Theme.of(context).colorScheme.onPrimary,
+          childrenPadding: const EdgeInsets.only(left: 16.0, right: 16.0),
+          title: Text(
+            'Feld 1',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 24,
+              color: Theme.of(context).colorScheme.onPrimary,
+            ),
+          ),
+          children: <Widget>[
+            Container(
+              height: 400,
+              width: double.infinity,
+              child: GoogleMap(
+                mapType: MapType.hybrid,
+                initialCameraPosition: CameraPosition(
+                    target: LatLng(37.42796133580664, -122.085749655962),
+                    zoom: 14.0),
+                gestureRecognizers: Set()
+                  ..add(Factory<PanGestureRecognizer>(
+                      () => PanGestureRecognizer()))
+                  ..add(Factory<VerticalDragGestureRecognizer>(
+                      () => VerticalDragGestureRecognizer())),
+                markers: Set()
+                  ..add(Marker(
+                      markerId: MarkerId('1'),
+                      position: LatLng(37.42796133580664, -122.085749655962))),
+                onMapCreated: (GoogleMapController controller) {
+                  _controller.complete(controller);
+                },
               ),
-              Text(
-                'Adresse',
-                style: TextStyle(fontSize: 12),
-              )
-            ],
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pushNamed(context, FieldDetailsScreen.routeName);
-            },
-            child: const Text('Öffnen'),
-            style: ElevatedButton.styleFrom(primary: const Color(0xFF773117)),
-          ),
-        ])
-      ],
-    ));
+            ),
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Adresse',
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onPrimary,
+                      fontSize: 20,
+                    ),
+                  )
+                ],
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, FieldDetailsScreen.routeName);
+                },
+                child: const Text('Öffnen'),
+                style: ElevatedButton.styleFrom(
+                  primary: Theme.of(context).colorScheme.secondary,
+                ),
+              ),
+            ])
+          ],
+        ));
   }
 }

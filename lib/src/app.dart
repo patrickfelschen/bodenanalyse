@@ -1,6 +1,7 @@
 import 'package:bodenanalyse/src/providers/analysis_provider.dart';
 import 'package:bodenanalyse/src/providers/auth_provider.dart';
 import 'package:bodenanalyse/src/providers/crop_provider.dart';
+import 'package:bodenanalyse/src/providers/field_provider.dart';
 import 'package:bodenanalyse/src/screens/analysis_start_screen.dart';
 import 'package:bodenanalyse/src/screens/crop_list_screen.dart';
 import 'package:bodenanalyse/src/screens/culture_favorites_screen.dart';
@@ -118,7 +119,10 @@ class App extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) => AnalysisProvider(),
-        )
+        ),
+        ChangeNotifierProvider(
+          create: (_) => FieldProvider(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
