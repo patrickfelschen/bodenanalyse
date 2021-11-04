@@ -56,9 +56,9 @@ class _AnalysisDetailsScreenState extends State<AnalysisDetailsScreen> {
           },
         ),
         actions: [
-          IconButton(icon: Icon(Icons.save), onPressed: () {
-            saveSample();
-            _fieldProvider.loadAllSamples();
+          IconButton(icon: Icon(Icons.save), onPressed: () async {
+            await saveSample();
+            await _fieldProvider.loadAllSamples();
             Navigator.pushNamed(context, FieldDetailsScreen.routeName);
           })
         ],
