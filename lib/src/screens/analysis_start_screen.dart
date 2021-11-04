@@ -177,51 +177,33 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
   @override
   Widget build(BuildContext context) {
     final AnalysisProvider _analysisProvider =
-    Provider.of<AnalysisProvider>(context);
+        Provider.of<AnalysisProvider>(context);
 
     final Map<String, Widget> stepTextList = {
       'Oberfläche': Text('Struktur der Oberfläche',
           style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: MediaQuery
-                  .of(context)
-                  .size
-                  .width / 26)),
+              fontSize: MediaQuery.of(context).size.width / 26)),
       'Durchwurzelung': Text('Durchwurzelung des Bodens',
           style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: MediaQuery
-                  .of(context)
-                  .size
-                  .width / 26)),
+              fontSize: MediaQuery.of(context).size.width / 26)),
       'MakroMikroporen': Text('Makroporen/Bioporen',
           style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: MediaQuery
-                  .of(context)
-                  .size
-                  .width / 26)),
+              fontSize: MediaQuery.of(context).size.width / 26)),
       'GefügeVerfestigung': Text('Gefüge und Verfestigung',
           style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: MediaQuery
-                  .of(context)
-                  .size
-                  .width / 26)),
+              fontSize: MediaQuery.of(context).size.width / 26)),
       'OrganischeReststoffe': Text('Oraganische Reststoffe',
           style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: MediaQuery
-                  .of(context)
-                  .size
-                  .width / 26)),
+              fontSize: MediaQuery.of(context).size.width / 26)),
       'FarbeGeruch': Text('Farbe und Geruch',
           style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: MediaQuery
-                  .of(context)
-                  .size
-                  .width / 26))
+              fontSize: MediaQuery.of(context).size.width / 26))
     };
 
     switch (_counter) {
@@ -250,17 +232,16 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
         title: Text('Schritt $_counter'),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
-          onPressed: () =>
-          {
+          onPressed: () => {
             if (_counter == 1)
-              {showCancelDialog(context)}
+              {showCancelDialog(context, _analysisProvider)}
             else
               {_decrementCounter()}
           },
         ),
         actions: [
           IconButton(
-              onPressed: () => {showCancelDialog(context)},
+              onPressed: () => {showCancelDialog(context, _analysisProvider)},
               icon: Icon(Icons.cancel_outlined))
         ],
       ),
@@ -269,18 +250,13 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
             child: Padding(
                 padding: const EdgeInsets.only(top: 4, left: 2, right: 2),
                 child: ProgressStepper(
-                  width: MediaQuery
-                      .of(context)
-                      .size
-                      .width,
+                  width: MediaQuery.of(context).size.width,
                   height: 10,
                   stepCount: _steps,
                   currentStep: _counter,
                   progressColor: Color(0xFF8BA94D),
                 ))),
-        stepTextList.entries
-            .elementAt(_counter - 1)
-            .value,
+        stepTextList.entries.elementAt(_counter - 1).value,
         Stack(
           children: stackChildren,
         ),
@@ -289,33 +265,31 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
             icon: Icon(
               Icons.swap_horizontal_circle_outlined,
               size: 50,
-              color: Theme
-                  .of(context)
-                  .colorScheme
-                  .primary,
+              color: Theme.of(context).colorScheme.primary,
             )),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [RatingButtonBar(context, stepTextList.entries
-              .elementAt((_counter - 1))
-              .key)
+          children: [
+            RatingButtonBar(
+                context, stepTextList.entries.elementAt((_counter - 1)).key)
           ],
         )
       ]),
     );
   }
 
-  Future<dynamic> showCancelDialog(BuildContext context) {
+  Future<dynamic> showCancelDialog(BuildContext context, AnalysisProvider analysisProvider) {
     return showDialog(
         context: context,
-        builder: (BuildContext context) =>
-            AlertDialog(
+        builder: (BuildContext context) => AlertDialog(
               title: Text('Abbrechen'),
               content: Text('Analyse abbrechen?'),
               actions: [
                 TextButton(
-                    onPressed: () =>
-                        Navigator.pushNamed(context, HomeScreen.routeName),
+                    onPressed: () {
+                      Navigator.pushNamed(context, HomeScreen.routeName);
+                      analysisProvider.clearProperties();
+                    },
                     child: Text('Ok')),
                 TextButton(
                     onPressed: () => Navigator.pop(context, 'Abbrechen'),
@@ -329,7 +303,7 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
     double fontSize = 20;
 
     final AnalysisProvider _analysisProvider =
-    Provider.of<AnalysisProvider>(context);
+        Provider.of<AnalysisProvider>(context);
 
     void savePropertyToProvider(int ratingValue, String criteriaName) {
       _analysisProvider.addProperty(PropertyModel(
@@ -353,10 +327,7 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
           ),
           style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(
-                  Theme
-                      .of(context)
-                      .colorScheme
-                      .secondary)),
+                  Theme.of(context).colorScheme.secondary)),
         ),
         ElevatedButton(
           onPressed: () {
@@ -369,11 +340,7 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
           ),
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(
-                Theme
-                    .of(context)
-                    .colorScheme
-                    .secondary
-                    .withOpacity(0.5)),
+                Theme.of(context).colorScheme.secondary.withOpacity(0.5)),
           ),
         ),
         ElevatedButton(
@@ -399,11 +366,7 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
           ),
           style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(
-                  Theme
-                      .of(context)
-                      .colorScheme
-                      .primary
-                      .withOpacity(0.5))),
+                  Theme.of(context).colorScheme.primary.withOpacity(0.5))),
         ),
         ElevatedButton(
           onPressed: () {
@@ -416,10 +379,7 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
           ),
           style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(
-                  Theme
-                      .of(context)
-                      .colorScheme
-                      .primary)),
+                  Theme.of(context).colorScheme.primary)),
         )
       ],
     );
