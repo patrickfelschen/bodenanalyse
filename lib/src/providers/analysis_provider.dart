@@ -16,6 +16,10 @@ class AnalysisProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  void clearProperties() {
+    _propertyList = List.empty(growable: true);
+  }
+
   void printPropertyList() {
     print(_propertyList);
   }
