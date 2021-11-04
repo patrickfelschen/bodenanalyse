@@ -1,5 +1,6 @@
 import 'package:bodenanalyse/src/screens/crop_list_screen.dart';
 import 'package:bodenanalyse/src/screens/edit_field_screen.dart';
+import 'package:bodenanalyse/src/widgets/sample_list_widget.dart';
 import 'package:easy_search/easy_search.dart';
 import 'package:flutter/material.dart';
 
@@ -52,62 +53,7 @@ class _FieldDetailsScreenState extends State<FieldDetailsScreen> {
             ),
           ),
           Expanded(
-            child: ListView(
-                /* statische Programmierung, falls DB-Abfrage nicht funktioniert:
-            //todo: Karten automatisch erzeugen mit Daten aus DB
-            padding: const EdgeInsets.all(8),
-            children: <Widget>[
-              Card(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    const ListTile(
-                    leading: Icon(Icons.eco_sharp),
-                    title: Text('Kartoffeln'),
-                    subtitle: Text('13.03.2021 11:45'),
-                    ),
-                  ],
-                ),
-              ),
-              Card(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    const ListTile(
-                      leading: Icon(Icons.eco_sharp),
-                      title: Text('Kartoffeln'),
-                      subtitle: Text('26.10.2020 09:23'),
-                    ),
-                  ],
-                ),
-              ),
-              Card(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    const ListTile(
-                      leading: Icon(Icons.eco_sharp),
-                      title: Text('Mais'),
-                      subtitle: Text('09.06.2020 13:45'),
-                    ),
-                  ],
-                ),
-              ),
-              Card(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    const ListTile(
-                      leading: Icon(Icons.eco_sharp),
-                      title: Text('Kartoffeln'),
-                      subtitle: Text('01.08.2019 21:52'),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-            */
-                ),
+            child: SampleListWidget(),
           ),
         ],
       ),

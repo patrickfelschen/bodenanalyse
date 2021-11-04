@@ -21,7 +21,7 @@ class SampleModel {
   factory SampleModel.fromJson(Map<String, dynamic> json) {
     return SampleModel(
       id: json["id"] as int,
-      datetime: json["datetime"] as DateTime,
+      datetime: DateTime.parse(json["localDateTime"]),
       lat: json["lat"] as double,
       lng: json["lng"] as double,
       cropModel: CropModel.fromJson(json["crop"]),
@@ -36,7 +36,7 @@ class SampleModel {
   Map<String, dynamic> toJson() {
     return {
       "id": id,
-      "datetime": datetime,
+      "localDateTime": datetime,
       "lat": lat,
       "lng": lng,
       "crop": cropModel.toJson(),
@@ -46,5 +46,10 @@ class SampleModel {
           )
           .toList()
     };
+  }
+
+  @override
+  String toString() {
+    return 'SampleModel{id: $id, datetime: $datetime, lat: $lat, lng: $lng, cropModel: $cropModel, properties: $properties}';
   }
 }

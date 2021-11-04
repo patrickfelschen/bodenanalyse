@@ -21,6 +21,7 @@ dependencies:
   progress_stepper: ^0.1.1
   http: ^0.13.4
   easy_search: any
+  pull_to_refresh: ^2.0.0
 
 dev_dependencies:
   flutter_test:

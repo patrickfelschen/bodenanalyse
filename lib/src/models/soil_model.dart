@@ -20,4 +20,20 @@ class SoilModel {
       "name": name,
     };
   }
+
+  @override
+  String toString() {
+    return 'SoilModel{id: $id, name: $name}';
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is SoilModel &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          name == other.name;
+
+  @override
+  int get hashCode => id.hashCode ^ name.hashCode;
 }
