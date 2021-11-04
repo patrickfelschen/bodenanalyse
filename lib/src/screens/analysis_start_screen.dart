@@ -220,7 +220,7 @@ class _AnalysisStartScreenState extends State<AnalysisStartScreen> {
                 ))),
         Text(
           'Struktur der Oberfläche',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width/26),
         ),
         Stack(
           children: stackChildren,
