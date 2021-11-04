@@ -135,7 +135,7 @@ class App extends StatelessWidget {
         themeMode: ThemeMode.light,
         theme: _theme,
         // Debug Option
-         initialRoute: AnalysisStartScreen.routeName,
+        // initialRoute: AnalysisStartScreen.routeName,
         onGenerateRoute: _onGenerateRoute,
       ),
     );
