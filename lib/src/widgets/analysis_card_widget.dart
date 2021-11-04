@@ -37,14 +37,80 @@ class AnalysisCard extends StatelessWidget {
           EdgeInsets.only(right: MediaQuery.of(context).size.width / 20);
       cardColor = Theme.of(context).colorScheme.primary;
     }
+    return LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
+      if(constraints.maxWidth > 600) {
+        return buildLargeCards(cardAlignment, cardMargin, context, cardColor);
+      }else {
+        return buildNormalCards(cardAlignment, cardMargin, context, cardColor);
+      }
+    });
+  }
+
+  Align buildNormalCards(AlignmentGeometry cardAlignment, EdgeInsets cardMargin, BuildContext context, Color cardColor) {
+    return Align(
+      alignment: cardAlignment,
+      child: Container(
+        margin: cardMargin,
+        width: MediaQuery.of(context).size.width/1.55,
+        decoration: BoxDecoration(
+            border: Border.all(width: 4, color: cardColor),
+            borderRadius: BorderRadius.all(Radius.circular(4)),
+
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height/3,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                image: this.analysisImage,
+                fit: BoxFit.fill,
+              )),
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width/1.55,
+              height: 200,
+              decoration: BoxDecoration(color: cardColor),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    text1,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  Text(text2,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white)),
+                  Text(text3,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white)),
+                  Text(text4,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white)),
+                  Text(text5,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white))
+                ],
+              ),
+            )
+          ],
+        ),
+      ));
+  }
+
+  Align buildLargeCards(AlignmentGeometry cardAlignment, EdgeInsets cardMargin, BuildContext context, Color cardColor) {
     return Align(
         alignment: cardAlignment,
         child: Container(
           margin: cardMargin,
           width: MediaQuery.of(context).size.width/1.55,
           decoration: BoxDecoration(
-              border: Border.all(width: 4, color: cardColor),
-              borderRadius: BorderRadius.all(Radius.circular(4)),
+            border: Border.all(width: 4, color: cardColor),
+            borderRadius: BorderRadius.all(Radius.circular(4)),
 
           ),
           child: Column(
@@ -52,16 +118,16 @@ class AnalysisCard extends StatelessWidget {
             children: [
               Container(
                 width: MediaQuery.of(context).size.width,
-                height: 250,
+                height: MediaQuery.of(context).size.height/2,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                  image: this.analysisImage,
-                  fit: BoxFit.fill,
-                )),
+                      image: analysisImage,
+                      fit: BoxFit.fill,
+                    )),
               ),
               Container(
-                width: 250,
-                height: 200,
+                width: MediaQuery.of(context).size.width/1.55,
+                height: MediaQuery.of(context).size.height/4.2,
                 decoration: BoxDecoration(color: cardColor),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -70,20 +136,20 @@ class AnalysisCard extends StatelessWidget {
                     Text(
                       text1,
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: Colors.white, fontSize: 22),
                     ),
                     Text(text2,
                         textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.white)),
+                        style: TextStyle(color: Colors.white, fontSize: 22)),
                     Text(text3,
                         textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.white)),
+                        style: TextStyle(color: Colors.white, fontSize: 22)),
                     Text(text4,
                         textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.white)),
+                        style: TextStyle(color: Colors.white, fontSize: 22)),
                     Text(text5,
                         textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.white))
+                        style: TextStyle(color: Colors.white, fontSize: 22))
                   ],
                 ),
               )
