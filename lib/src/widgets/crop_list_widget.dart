@@ -16,34 +16,36 @@ class _CropListWidgetState extends State<CropListWidget> {
   Widget build(BuildContext context) {
     final CropProvider _cropProvider = Provider.of<CropProvider>(context);
 
-    return FutureBuilder<List<CropModel>>(
-      future: _cropProvider.getAllCrops(),
-      builder: (BuildContext context, AsyncSnapshot snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        }
+    Future<void> updateCrop(CropModel cropModel) async {
+      CropModel newCrop = CropModel(
+        id: cropModel.id,
+        name: cropModel.name,
+        favorite: !cropModel.favorite,
+      );
 
-        if (snapshot.hasData) {
-          List<CropModel> crops = snapshot.data;
+      await _cropProvider.updateCrop(newCrop);
+      await _cropProvider.loadAllCrops();
+    }
 
-          return ListView.separated(
-            itemCount: crops.length,
-            itemBuilder: (context, index) {
-              return CropItemWidget(
-                cropModel: crops[index],
-              );
-            },
-            separatorBuilder: (context, index) {
-              return const Divider();
-            },
-          );
-        }
+    List<CropModel> sortedCrops = _cropProvider.getCrops();
 
-        return const Center(
-          child: Text("Leer"),
+    sortedCrops.sort((a, b) {
+      if (b.favorite) {
+        return 1;
+      }
+      return -1;
+    });
+
+    return ListView.separated(
+      itemCount: _cropProvider.getCrops().length,
+      itemBuilder: (context, index) {
+        return CropItemWidget(
+          cropModel: _cropProvider.getCrops()[index],
+          onTap: () => updateCrop(_cropProvider.getCrops()[index]),
         );
+      },
+      separatorBuilder: (context, index) {
+        return const Divider();
       },
     );
   }

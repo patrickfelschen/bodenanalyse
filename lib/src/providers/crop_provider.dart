@@ -9,17 +9,25 @@ class CropProvider with ChangeNotifier {
   late SharedPreferencesService _sharedPreferencesService;
   late String _baseUrl;
 
+  List<CropModel> _crops = [];
+
   CropProvider() {
     _baseUrl = "http://131.173.124.199:8080/";
     _sharedPreferencesService = SharedPreferencesService();
+
+    loadAllCrops();
   }
 
-  Future<List<CropModel>> getAllCrops() async {
+  List<CropModel> getCrops() {
+    return _crops;
+  }
+
+  Future<void> loadAllCrops() async {
     String? token = await _sharedPreferencesService.loadToken();
 
     if (token == null || token == "") {
       print("No Token");
-      return List.empty();
+      return;
     }
 
     Map<String, String>? reqHeader = {
@@ -44,9 +52,43 @@ class CropProvider with ChangeNotifier {
           .map((e) => CropModel.fromJson(e))
           .toList();
 
-      return responseCrops;
+      _crops = responseCrops;
     }
 
-    return List.empty();
+    notifyListeners();
+  }
+
+  Future<void> updateCrop(CropModel cropModel) async {
+    String? token = await _sharedPreferencesService.loadToken();
+
+    if (token == null || token == "") {
+      print("No Token");
+      return;
+    }
+
+    Map<String, String>? reqHeader = {
+      "token": token,
+      "Content-Type": "application/json"
+    };
+
+    Map<String, dynamic> reqBody = cropModel.toJson();
+    Map<String, dynamic> req = {"crop": reqBody};
+
+    String bodyEncoded = json.encode(req);
+
+    http.Response response = await http.patch(
+      Uri.parse(_baseUrl + "crops"),
+      headers: reqHeader,
+      body: bodyEncoded,
+    );
+
+    print("POST Request:");
+    print(reqHeader);
+    print(bodyEncoded);
+    print("RESPONSE:");
+    print("Status Code:" + response.statusCode.toString());
+    print(response.body);
+
+    if (response.statusCode == 200) {}
   }
 }
